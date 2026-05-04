@@ -99,14 +99,14 @@ function Perfil() {
                                             />
                                         </button>
                                     </form>
-                                
+
 
                                 </div>
                                 <div className="d-flex align-items-center" style={{ marginTop: '10px', flexDirection: 'row', justifyContent: 'space-between', fontSize: '30px' }}>
                                     <div className="d-flex align-items-center" style={{ marginTop: '10px', height: '400px', flexDirection: 'column', gap: '20px', justifyContent: 'flex-start' }}>
-                                                                <button className="preferencias">Bom/Boa com números</button>
-                                                                <button className="preferencias">Organizado</button>
-                                                                <button className="preferencias">Prestativo</button>                            
+                                        <button className="preferencias">Bom/Boa com números</button>
+                                        <button className="preferencias">Organizado</button>
+                                        <button className="preferencias">Prestativo</button>
                                     </div>
                                     <div>
                                         <button></button>
@@ -186,21 +186,23 @@ function Perfil() {
                                         placeholder="12345-678"
                                         aria-label="Search"
                                     />
-                                    </div>
-                                    
-                                    <button className="botaofinalizar">FINALIZAR</button>
-                                    
-                            
                                 </div>
+
+                                <button className="botaofinalizar">FINALIZAR</button>
+
+
+                            </div>
                         </div>
-                        
+
                     </div>
-                    
 
 
-                    <div className="secaobusca" style={{ backgroundColor: '#fffcf7', width: '100%', height: '100%', padding: '30px', borderRadius: '40px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+
+                    <div className="secaobusca" style={{ backgroundColor: '#fffcf7', width: '100%', height: '100%', padding: '30px', borderRadius: '40px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                         <img style={{ width: '100%', height: '100%', borderRadius: '20px' }} src="src/assets/voluntariados.jpg" alt="Buscar" />
-                        <button className="botaoeventos">BUSCAR EVENTOS</button>
+                        <Link to="/eventos">
+                            <button className="botaoeventos">BUSCAR EVENTOS</button>
+                        </Link>
                     </div>
                 </div>
 
