@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import "./Registro.css"
+import "../../components/navbar.css"
 import { Link } from 'react-router-dom';
 
 function Registro() {
@@ -17,32 +18,24 @@ function Registro() {
       <section id="center">
         {/* Navbar */}
         <div className='background d-flex'>
-          <nav
-            style={{ backgroundColor: '#fffcf7', borderBottom: '1px solid lightgray' }}
-            className="navbar navbar-expand-lg w-100"
-          >
+          <nav className="navbar navbar-cheer navbar-expand-lg w-100">
             <div className="container-fluid d-flex justify-content-center align-items-center">
 
               {/* Logo */}
               <Link to="/" style={{ textDecoration: 'none' }}>
-                <a
-                  style={{ color: '#FF8C00', fontSize: '2.25rem', fontFamily: 'Mogra', marginRight: '40px' }}
-                  className="navbar-brand"
-                >
-                  CHEER
-                </a>
+                <a className="navbar-brand navbar-brand-cheer">CHEER</a>
               </Link>
               {/* Links e Pesquisa agrupados e centralizados */}
               <div className="d-flex align-items-center">
                 <ul className="navbar-nav d-flex flex-row me-4">
                   <li className="nav-item ms-3">
-                    <a style={{ fontFamily: 'Archivo Black' }} className="nav-link" href="/login">Eventos</a>
+                    <a className="nav-link nav-link-cheer" href="/login">Eventos</a>
                   </li>
                   <li className="nav-item ms-3">
-                    <a style={{ fontFamily: 'Archivo Black' }} className="nav-link" href="/login">Instituições</a>
+                    <a className="nav-link nav-link-cheer" href="/login">Instituições</a>
                   </li>
                   <li className="nav-item ms-3">
-                    <a style={{ fontFamily: 'Archivo Black' }} className="nav-link" href="/login">Sobre nós</a>
+                    <a className="nav-link nav-link-cheer" href="/login">Sobre nós</a>
                   </li>
                 </ul>
 
@@ -86,7 +79,7 @@ function Registro() {
             </div>
           </nav>
         </div>
-        <div className="container-fluid" style={{ background: 'linear-gradient(to bottom, #b2d7e4, #FFFFFF )', minHeight: '91.2vh', display: 'flex', alignItems: 'center' }}>
+        <div className="container-fluid hero-section">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-11 col-md-10 col-lg-9 shadow-sm"
@@ -97,48 +90,35 @@ function Registro() {
                   justifyContent: 'center',
                   alignItems: 'center'
                 }}>
-                <h1 style={{ display: 'flex', flexDirection: 'column', marginBottom: '20px', textAlign: 'center', fontSize: '1.5rem', fontFamily: 'Mogra' }}>PREENCHA OS CAMPOS ABAIXO</h1>
-                <div style={{ backgroundColor: '#FF8C00', paddingLeft: '50px', paddingRight: '50px', padding: '20px', borderRadius: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                  <label style={{ textAlign: 'center', width: '80%', fontFamily:'Source-Sans-3', fontWeight:'bold' }}>Nome Completo:</label>
-                  <input style={{ width: '300px', height: '30px', marginBottom: '10px' }} type="text" placeholder="Digite seu nome completo" />
+                <h1 className="titulo-registro">PREENCHA OS CAMPOS ABAIXO</h1>
+                <div className="form-registro">
+                  <label>Nome Completo:</label>
+                  <input type="text" placeholder="Digite seu nome completo" />
 
-                  <label style={{ textAlign: 'center', width: '80%', fontFamily:'Source-Sans-3', fontWeight:'bold'}}>Email:</label>
-                  <input style={{ width: '300px', height: '30px', marginBottom: '10px' }} type="email" placeholder="Digite seu email" />
+                  <label>Email:</label>
+                  <input type="email" placeholder="Digite seu email" />
 
-                  <label style={{ textAlign: 'center', width: '80%', fontFamily:'Source-Sans-3', fontWeight:'bold' }}>Telefone:</label>
-                  <input style={{ width: '300px', height: '30px', marginBottom: '10px' }} type="tel" placeholder="Digite seu telefone" />
+                  <label>Telefone:</label>
+                  <input type="tel" placeholder="Digite seu telefone" />
 
-                  <label style={{ textAlign: 'center', width: '80%', fontFamily:'Source-Sans-3', fontWeight:'bold' }}>CPF:</label>
-                  <input style={{ width: '300px', height: '30px', marginBottom: '10px' }} type="text" placeholder="Digite seu CPF" />
+                  <label>CPF:</label>
+                  <input type="text" placeholder="Digite seu CPF" />
 
-                  <label style={{ textAlign: 'center', width: '80%', fontFamily:'Source-Sans-3', fontWeight:'bold' }}>Senha:</label>
+                  <label>Senha:</label>
                   <input
-                    style={{ width: '300px', height: '30px', marginBottom: '10px' }}
                     type="password"
                     placeholder="Digite sua senha"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
 
-                  <label style={{ textAlign: 'center', width: '80%', fontFamily:'Source-Sans-3', fontWeight:'bold' }}>Confirmar Senha:</label>
-                  <input style={{ width: '300px', height: '30px', marginBottom: '7px' }} type="password" placeholder="Confirme sua senha" />
+                  <label>Confirmar Senha:</label>
+                  <input type="password" placeholder="Confirme sua senha" />
                 </div>
 
                 {/*Validação de senha*/}
 
-                <div 
-                  style={{
-                    marginTop: '20px',
-                    height: 'fit-content',
-                    width: '400px',
-                    backgroundColor: 'lightgray',
-                    padding: '20px', 
-                    borderRadius: '10px', 
-                    display: 'flex', 
-                    flexDirection: 'column', 
-                    justifyContent: 'center', 
-                    alignItems: 'flex-start' }}>
-
+                <div className="validation-box">
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <input
                         type="checkbox"
@@ -146,7 +126,7 @@ function Registro() {
                         readOnly
                         className="form-check-input me-2"
                       />
-                      <span style={{  color: validations.hasUpper ? 'green' : 'red', fontFamily:'Source-Sans-3' }}>
+                      <span className={validations.hasUpper ? 'validation-valid' : 'validation-invalid'}>
                         Contêm uma letra maiúscula
                       </span>
                     </div>
@@ -157,7 +137,7 @@ function Registro() {
                         readOnly
                         className="form-check-input me-2"
                       />
-                      <span style={{ color: validations.hasNumber ? 'green' : 'red', fontFamily:'Source-Sans-3' }}>
+                      <span className={validations.hasUpper ? 'validation-valid' : 'validation-invalid'}>
                         Pelo menos um número
                       </span>
                     </div>
@@ -168,7 +148,7 @@ function Registro() {
                         readOnly
                         className="form-check-input me-2"
                       />
-                      <span style={{ color: validations.minLength ? 'green' : 'red', fontFamily:'Source-Sans-3' }}>
+                      <span className={validations.hasUpper ? 'validation-valid' : 'validation-invalid'}>
                         Mínimo de 8 caracteres
                       </span>
                     </div>
@@ -179,12 +159,12 @@ function Registro() {
                         readOnly
                         className="form-check-input me-2"
                       />
-                      <span style={{ color: validations.hasSpecial ? 'green' : 'red', fontFamily:'Source-Sans-3' }}>
+                      <span className={validations.hasUpper ? 'validation-valid' : 'validation-invalid'}>
                         Contem um caractere especial (!@#$%^&*)
                       </span>
                     </div>
                 </div>
-                <button id='btn_registro_user' style={{ marginTop: '10px', width: '200px', height: '50px', fontSize: '1.25rem' }} class="btn btn-primary">Criar Conta</button>
+                <button id='btn_registro_user' className="btn btn-primary-cheer">Criar Conta</button>
               </div>
             </div>
           </div>
@@ -213,7 +193,7 @@ function Registro() {
                 </input>
 
 
-                <button id='btn_login' style={{ border: 'none', backgroundColor: '#b2d7e4', color: 'black', width: 'fit-content', marginTop: '10px' }} type="button" class="btn btn-secondary" data-bs-dismiss="modal">LOGIN</button>
+                <button id='btn_login' className="btn modal-btn-login" type="button" data-bs-dismiss="modal">LOGIN</button>
 
 
               </div>
@@ -222,7 +202,7 @@ function Registro() {
               <h4 className="justify-content-center" style={{ marginTop: '10px', textAlign: 'center' }}>Não tem um perfil de voluntário?</h4>
             </div>
             <Link className="row justify-content-center" style={{ textDecoration: 'none' }} to="/registro">
-              <button style={{ border: 'none', backgroundColor: '#FF8C00', color: 'black', width: 'fit-content', marginBottom: '15px' }} type="button" class="btn btn-secondary" data-bs-dismiss="modal">Registre-se</button>
+              <button className="btn modal-btn-registro" type="button" data-bs-dismiss="modal">Registre-se</button>
             </Link>
           </div>
         </div>

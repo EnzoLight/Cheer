@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import "./App.css"
+import "../../components/navbar.css"
 import { Link } from 'react-router-dom'
 
 function App() {
@@ -10,32 +11,24 @@ function App() {
       <section id="center">
         {/* Navbar */}
         <div className='background d-flex'>
-          <nav
-            style={{ backgroundColor: '#fffcf7', borderBottom: '1px solid lightgray' }}
-            className="navbar navbar-expand-lg w-100"
-          >
+          <nav className="navbar navbar-cheer navbar-expand-lg w-100">
             <div className="container-fluid d-flex justify-content-center align-items-center">
 
               {/* Logo */}
               <Link to="/" style={{ textDecoration: 'none' }}>
-                <a
-                  style={{ color: '#FF8C00', fontSize: '2.25rem', fontFamily: 'Mogra', marginRight: '40px' }}
-                  className="navbar-brand"
-                >
-                  CHEER
-                </a>
+                <a className="navbar-brand navbar-brand-cheer">CHEER</a>
               </Link>
               {/* Links e Pesquisa agrupados e centralizados */}
               <div className="d-flex align-items-center">
                 <ul className="navbar-nav d-flex flex-row me-4">
                   <li className="nav-item ms-3">
-                    <a style={{ fontFamily: 'Archivo Black' }} className="nav-link" href="/login">Eventos</a>
+                    <a className="nav-link nav-link-cheer" href="/login">Eventos</a>
                   </li>
                   <li className="nav-item ms-3">
-                    <a style={{ fontFamily: 'Archivo Black' }} className="nav-link" href="/login">Instituições</a>
+                    <a className="nav-link nav-link-cheer" href="/login">Instituições</a>
                   </li>
                   <li className="nav-item ms-3">
-                    <a style={{ fontFamily: 'Archivo Black' }} className="nav-link" href="/login">Sobre nós</a>
+                    <a className="nav-link nav-link-cheer" href="/login">Sobre nós</a>
                   </li>
                 </ul>
 
@@ -80,7 +73,7 @@ function App() {
           </nav>
         </div>
 
-        <div className="container-fluid" style={{ background: 'linear-gradient(to bottom, #b2d7e4, #FFFFFF )', minHeight: '91.2vh', display: 'flex', alignItems: 'center' }}>
+        <div className="container-fluid hero-section">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-11 col-md-10 col-lg-9 shadow-sm"
@@ -106,9 +99,7 @@ function App() {
                 </h3>
 
                 <Link to="/registro">
-                  <button className="btn btn-primary btn-lg" style={{ width: '200px', height: '50px', backgroundColor: 'orange', color: 'black', fontSize: '1.25rem', fontFamily: 'Arial Black' }}>
-                    REGISTRE-SE
-                  </button>
+                  <button className="btn btn-primary-cheer btn-lg">REGISTRE-SE</button>
                 </Link>
               </div>
             </div>
@@ -137,7 +128,7 @@ function App() {
                 </input>
 
                 
-                  <button id='btn_login' style={{ border: 'none', backgroundColor: '#b2d7e4', color: 'black', width: 'fit-content', marginTop: '10px' }} type="button" class="btn btn-secondary" data-bs-dismiss="modal">LOGIN</button>
+                  <button id='btn_login' className="btn modal-btn-login" type="button" data-bs-dismiss="modal">LOGIN</button>
                 
 
               </div>
