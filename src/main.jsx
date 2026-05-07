@@ -9,6 +9,7 @@ import Registro from './Telas/Registre-se/Registro'
 import Evento from './Telas/Eventos/Evento'
 import Perfil from './Telas/Perfil/Perfil'
 import Calendario from './Telas/Calendario/Calendario'
+import SobreNos from './Telas/SobreNos/SobreNos';
 {/*import { motion } from "framer-motion" */}
 
 // Note que aqui usamos apenas 'createRoot' (sem o ReactDOM antes)
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/eventos" element={<Evento />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/calendario" element={<Calendario />} /> 
+        <Route path="/SobreNos" element={<SobreNos />} /> 
       </Routes>
     </BrowserRouter>
   </StrictMode>
