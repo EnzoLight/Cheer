@@ -37,8 +37,8 @@ function UserNavbar() {
 
                 <ul className="nav-item ms-3 dropdown-menu dropdown-menu-end text-small text-decoration-none" aria-labelledby="dropdownEventos">
                   <li><a className="dropdown-item" href="/eventos">Buscar Eventos</a></li>
-                  <li><a className="dropdown-item" href="/calendario">Eventos Próximos</a></li>
-                  <li><a className="dropdown-item" href="/atividade_user">Eventos realizados</a></li>
+                  <li><a data-bs-toggle="modal" data-bs-target="#LoginModal" className="dropdown-item" href="#">Eventos Próximos</a></li>
+                  <li><a data-bs-toggle="modal" data-bs-target="#LoginModal" className="dropdown-item" href="#">Eventos realizados</a></li>
                 </ul>
               </li>
               <li className="nav-item dropdown ms-3">
@@ -54,8 +54,8 @@ function UserNavbar() {
                 </a>
 
                 <ul className="nav-item ms-3 dropdown-menu dropdown-menu-end text-small text-decoration-none" aria-labelledby="dropdownEventos">
-                  <li><a className="dropdown-item" href="/buscar_instituicoes">Buscar Instituições</a></li>
-                  <li><a className="dropdown-item" href="/atividade_user">Instituições Seguidas</a></li>
+                  <li><a data-bs-toggle="modal" data-bs-target="#LoginModal" className="dropdown-item" href="#">Buscar Instituições</a></li>
+                  <li><a data-bs-toggle="modal" data-bs-target="#LoginModal" className="dropdown-item" href="#">Instituições Seguidas</a></li>
                 </ul>
               </li>
 
@@ -93,8 +93,8 @@ function UserNavbar() {
             <ul className="dropdown-menu dropdown-menu-end text-small" aria-labelledby="dropdownUser1">
               <li><a data-bs-toggle="modal" data-bs-target="#LoginModal" className="dropdown-item" href="#">Login</a></li>
               <li><a data-bs-toggle="modal" data-bs-target="#LoginModal" className="dropdown-item " href="#">Meu perfil</a></li>
-              <li><a className="dropdown-item" href="/perfil">Ajustar preferências</a></li>
-              <li><a data-bs-toggle="modal" data-bs-target="#LoginModal" className="dropdown-item" href="atividade_user">Atividade</a></li>
+              <li><a data-bs-toggle="modal" data-bs-target="#LoginModal" className="dropdown-item" href="#">Ajustar preferências</a></li>
+              <li><a data-bs-toggle="modal" data-bs-target="#LoginModal" className="dropdown-item" href="#">Atividade</a></li>
               <li><hr className="dropdown-divider" /></li>
               <li><a className="dropdown-item" href="#">Opções</a></li>
               <li><a className="dropdown-item" href="#">Sair</a></li>

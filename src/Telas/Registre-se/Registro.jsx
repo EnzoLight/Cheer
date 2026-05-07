@@ -32,7 +32,7 @@ function Registro() {
                   alignItems: 'center'
                 }}>
                 <h1 style={{ display: 'flex', flexDirection: 'column', marginBottom: '20px', textAlign: 'center', fontSize: '1.5rem', fontFamily: 'Mogra' }}>PREENCHA OS CAMPOS ABAIXO</h1>
-                <div style={{ backgroundColor: '#FF8C00', paddingLeft: '50px', paddingRight: '50px', padding: '20px', borderRadius: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                <div style={{ backgroundColor: '#fca63d', paddingLeft: '50px', paddingRight: '50px', padding: '20px', borderRadius: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                   <label style={{ textAlign: 'center', width: '80%', fontFamily: 'Source-Sans-3', fontWeight: 'bold' }}>Nome Completo:</label>
                   <input style={{ width: '300px', height: '30px', marginBottom: '10px' }} type="text" placeholder="Digite seu nome completo" />
 

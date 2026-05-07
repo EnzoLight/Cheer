@@ -27,7 +27,7 @@ function Evento() {
 
         <div className="container-fluid flex-grow-1" style={{ background: 'linear-gradient(to bottom, #ffd497, #FFFFFF )', minHeight: '91.2vh', display: 'flex', flexDirection: 'row', padding: '40px', gap: '40px' }}>
           <div style={{ opacity: '80%', backgroundColor: '#fffcf7', width: '80%', height: '100%', padding: '30px', borderRadius: '40px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <h1>Mapa do Evento</h1>
+            <h1 style={{fontFamily:'Monserat', fontWeight:'bold'}}>Mapa do Evento</h1>
 
             <div className="map-container" style={{ width: '100%', height: '620px', padding: '30px', borderRadius: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
 
@@ -46,10 +46,10 @@ function Evento() {
               )
               }
 
-              <div style={{ borderRadius: '15px', padding: '10px', justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: '30px', backgroundColor: '#b2d7e4' }}>
+              <div style={{ borderRadius: '15px', padding: '10px', justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: '30px', backgroundColor: '#8ac9e0' }}>
                 <div className="d-flex align-items-center" style={{}}>
                   <div className="d-flex align-items-center" style={{ marginTop: '10px' }}>
-                    <p>CEP: </p>
+                    <p style={{color: 'black', fontWeight: 'bold'}}>CEP: </p>
                     <input
                       style={{ width: '200px', marginLeft: '10px' }}
                       className="form-control me-2"
@@ -58,7 +58,7 @@ function Evento() {
                       aria-label="Search"
                     />
                   </div>
-                  <p>Rua: </p>
+                  <p style={{color: 'black', fontWeight: 'bold'}}>Rua: </p>
                   <input
                     style={{ width: '300px', marginLeft: '10px' }}
                     className="form-control me-2"
@@ -68,7 +68,7 @@ function Evento() {
                   />
 
 
-                  <p style={{ marginLeft: '20px' }}>Número: </p>
+                  <p style={{ color: 'black', fontWeight: 'bold', marginLeft: '20px' }}>Número: </p>
                   <input
                     style={{ width: '100px', marginLeft: '10px' }}
                     className="form-control me-2"
@@ -78,7 +78,7 @@ function Evento() {
                   />
 
                 </div>
-                <div className="d-flex align-items-center" style={{ marginTop: '10px' }}>
+                <div className="d-flex align-items-center" style={{color: 'black', fontWeight: 'bold', marginTop: '10px' }}>
                   <p>Bairro: </p>
                   <input
                     style={{ width: '200px', marginLeft: '10px' }}
@@ -87,7 +87,7 @@ function Evento() {
                     placeholder="Bairro Exemplo"
                     aria-label="Search"
                   />
-                  <p style={{ marginLeft: '20px' }}>UF: </p>
+                  <p style={{color: 'black', fontWeight: 'bold', marginLeft: '20px' }}>UF: </p>
                   <input
                     style={{ width: '100px', marginLeft: '10px' }}
                     className="form-control me-2"
@@ -97,7 +97,7 @@ function Evento() {
                   />
                 </div>
                 <div className="d-flex align-items-center" style={{ marginTop: '10px' }}>
-                  <p>Cidade: </p>
+                  <p style={{color: 'black', fontWeight: 'bold'}} >Cidade: </p>
                   <input
                     style={{ width: '200px', marginLeft: '10px' }}
                     className="form-control me-2"
@@ -106,7 +106,7 @@ function Evento() {
                     aria-label="Search"
                   />
 
-                  <p style={{ marginLeft: '20px' }}>Complemento: </p>
+                  <p style={{ color: 'black', fontWeight: 'bold', marginLeft: '20px' }}>Complemento: </p>
                   <input
                     style={{ width: '300px', marginLeft: '10px' }}
                     className="form-control me-2"
@@ -120,25 +120,25 @@ function Evento() {
             </div>
           </div>
           <div style={{ backgroundColor: '#fffcf7', width: '60%', height: '100%', padding: '30px', borderRadius: '40px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <h1>Detalhes do Evento</h1>
-            <div className="map-container" style={{ backgroundColor: '#FF8C00', width: '100%', height: '100%', padding: '30px', borderRadius: '40px', flexDirection: 'column', display: 'flex', color: '#fff', justifyContent: 'space-between' }}>
+            <h1 style={{fontFamily:'Monserat', fontWeight:'bold'}}>Detalhes do Evento</h1>
+            <div className="map-container" style={{marginTop: '15px' ,backgroundColor: '#fca63d', width: '100%', height: '100%', padding: '30px', borderRadius: '40px', flexDirection: 'column', display: 'flex', color: '#000000', justifyContent: 'space-between', fontFamily: 'Open Sans' }}>
               <div className="detalhes">
-                <p>Nome: Exemplo de Evento</p>
-                <p>Tipo: Exemplo de Tipo</p>
-                <p>Descrição: Esta é uma descrição de exemplo para o evento.</p>
-                <p>Data: 01/01/2024</p>
+                <p><b>Nome:</b> Exemplo de Evento</p>
+                <p><b>Tipo:</b> Exemplo de Tipo</p>
+                <p><b>Descrição:</b> Esta é uma descrição de exemplo para o evento.</p>
+                <p><b>Data e horário:</b> 01/01/2024 - 14:00</p>
               </div>
 
               <div>
 
-                <h2>Preferências: </h2>
+                <h2 style={{color: 'black', fontWeight: 'bold'}}>Preferências: </h2>
                 <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
                   <button className="preferencias">Bom/Boa com números</button>
                   <button className="preferencias">Organizado</button>
                   <button className="preferencias">Prestativo</button>
                 </div>
 
-                <button id="voluntariar-se" className="btn btn-primary" style={{ padding: '15px 20px', fontSize: '30px', borderRadius: '40px', width: '100%' }}>Voluntariar-se</button>
+                <button id="voluntariar-se" className="btn btn-primary" style={{ fontFamily:'Poppins', fontWeight:'bold' ,padding: '15px 20px', fontSize: '30px', borderRadius: '40px', width: '100%' }}>VOLUNTARIAR-SE</button>
 
 
               </div>

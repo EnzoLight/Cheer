@@ -30,11 +30,11 @@ function App() {
                   alignItems: 'center'
                 }}>
 
-                <h1 className="text-center mb-4" style={{ fontSize: 'calc(1.5rem + 1.5vw)' }}>
+                <h1 className="text-center mb-4" style={{fontFamily: 'Montserrat', color: 'black', fontSize: 'calc(1.5rem + 1.5vw)' }}>
                   Bem-Vindo, ao Cheer!
                 </h1>
 
-                <h3 className="text-center mb-4" style={{ width: '90%', fontSize: 'calc(1rem + 0.5vw)' }}>
+                <h3 className="text-center mb-4" style={{width: '90%', fontSize: 'calc(1rem + 0.5vw)' }}>
                   A plataforma que te conecta com as mais diversas instituições e eventos de caridade...
                   <br></br>
                   Pronto para ser a mudança que você quer ver no mundo?
@@ -44,7 +44,7 @@ function App() {
                 </h3>
 
                 <Link to="/registro">
-                  <button className="btn btn-primary btn-lg" style={{ width: '200px', height: '50px', backgroundColor: '#FF8C00', color: 'black', fontSize: '1.25rem', fontFamily: 'Arial Black' }}>
+                  <button className="btn btn-primary btn-lg" style={{width: '200px', height: '50px', backgroundColor: '#FF8C00', color: 'black', fontSize: '1.25rem', fontFamily: 'Poppins', fontWeight: 'bold' }}>
                     REGISTRE-SE
                   </button>
                 </Link>

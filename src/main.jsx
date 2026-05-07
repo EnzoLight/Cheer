@@ -9,7 +9,7 @@ import Registro from './Telas/Registre-se/Registro'
 import Evento from './Telas/Eventos/Evento'
 import Perfil from './Telas/Perfil/Perfil'
 import Calendario from './Telas/Calendario/Calendario'
-import { motion } from "framer-motion"
+{/*import { motion } from "framer-motion" */}
 
 // Note que aqui usamos apenas 'createRoot' (sem o ReactDOM antes)
 createRoot(document.getElementById('root')).render(

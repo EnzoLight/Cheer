@@ -28,3 +28,7 @@
     transform: scale(1.05);
 }
 
+.textinho {
+    color: 'black';
+    fontWeight: 'bold';
+}
