@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import "./App.css"
 import { Link } from 'react-router-dom'
+import UserNavbar from '../../Componentes/UserNavbar';
+import ModalLogin from '../../Componentes/Modais/ModalLogin'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -9,107 +12,9 @@ function App() {
     <>
       <section id="center">
         {/* Navbar */}
-        <div className='background d-flex'>
-          <nav
-            style={{ backgroundColor: '#fffcf7', borderBottom: '1px solid lightgray' }}
-            className="navbar navbar-expand-lg w-100"
-          >
-            <div className="container-fluid d-flex justify-content-center align-items-center">
+        <UserNavbar />
 
-              {/* Logo */}
-              <Link to="/" style={{ textDecoration: 'none' }}>
-                <a
-                  style={{ color: '#FF8C00', fontSize: '2.25rem', fontFamily: 'Mogra', marginRight: '40px' }}
-                  className="navbar-brand"
-                >
-                  CHEER
-                </a>
-              </Link>
-              
-              {/* Links e Pesquisa agrupados e centralizados */}
-              <div className="d-flex align-items-center">
-                <ul className="navbar-nav d-flex flex-row me-4">
-                  <li className="nav-item dropdown ms-3"> 
-                    <a
-                      style={{ fontFamily: 'Archivo Black' }}
-                      href="#"
-                      className="nav-link text-dark text-decoration-none"
-                      id="dropdownEventos"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Eventos
-                    </a>
-
-                    <ul className="nav-item ms-3 dropdown-menu dropdown-menu-end text-small text-decoration-none" aria-labelledby="dropdownEventos">
-                      <li><a className="dropdown-item" href="/eventos">Buscar Eventos</a></li>
-                      <li><a className="dropdown-item" href="/calendario_user">Eventos Próximos</a></li>
-                      <li><a className="dropdown-item" href="/eventos_user">Eventos realizados</a></li>
-                    </ul>
-                  </li>
-                  <li className="nav-item dropdown ms-3"> 
-                    <a
-                      style={{ fontFamily: 'Archivo Black' }}
-                      href="#"
-                      className="nav-link text-dark text-decoration-none"
-                      id="dropdownEventos"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Instituições
-                    </a>
-
-                    <ul className="nav-item ms-3 dropdown-menu dropdown-menu-end text-small text-decoration-none" aria-labelledby="dropdownEventos">
-                      <li><a className="dropdown-item" href="/eventos">Buscar Instituições</a></li>
-                      <li><a className="dropdown-item" href="/calendario_user">Instituições Seguidas</a></li>
-                    </ul>
-                  </li>
-
-                  <li className="nav-item ms-3">
-                    <a style={{ fontFamily: 'Archivo Black' }} className="nav-link" href="/login">Sobre nós</a>
-                  </li>
-                </ul>
-                {/* Barra de pesquisa */}
-                <div className="d-flex align-items-center">
-                  <form className="d-flex">
-                    <input
-                      style={{ width: '300px' }}
-                      className="form-control me-2"
-                      type="search"
-                      placeholder="Doação de Páscoa"
-                      aria-label="Search"
-                    />
-                    <button className="btn" type="submit" id="img_search">
-                      <img
-                        src="src/assets/search.png"
-                        alt="Search"
-                        width="20"
-                        height="20"
-                      />
-                    </button>
-                  </form>
-                </div>
-              </div>
-
-              {/* Foto de Perfil */}
-              <div className="dropdown ms-4">
-                <a href="#" className="d-block link-dark text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="src/assets/boy.png" alt="mdo" width="50" height="50" className="rounded-circle" />
-                </a>
-                <ul className="dropdown-menu dropdown-menu-end text-small" aria-labelledby="dropdownUser1">
-                  <li><a data-bs-toggle="modal" data-bs-target="#LoginModal" className="dropdown-item" href="#">Login</a></li>
-                  <li><a data-bs-toggle="modal" data-bs-target="#LoginModal" className="dropdown-item " href="#">Meu perfil</a></li>
-                  <li><a className="dropdown-item" href="/perfil">Ajustar preferências</a></li>
-                  <li><a data-bs-toggle="modal" data-bs-target="#LoginModal" className="dropdown-item" href="#">Eventos realizados</a></li>
-                  <li><hr className="dropdown-divider" /></li>
-                  <li><a className="dropdown-item" href="#">Opções</a></li>
-                  <li><a className="dropdown-item" href="#">Sair</a></li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        </div>
-
+        {/*Restante do conteúdo*/}
         <div className="container-fluid" style={{ background: 'linear-gradient(to bottom, #b2d7e4, #FFFFFF )', minHeight: '91.2vh', display: 'flex', alignItems: 'center' }}>
           <div className="container">
             <div className="row justify-content-center">
@@ -139,7 +44,7 @@ function App() {
                 </h3>
 
                 <Link to="/registro">
-                  <button className="btn btn-primary btn-lg" style={{ width: '200px', height: '50px', backgroundColor: 'orange', color: 'black', fontSize: '1.25rem', fontFamily: 'Arial Black' }}>
+                  <button className="btn btn-primary btn-lg" style={{ width: '200px', height: '50px', backgroundColor: '#FF8C00', color: 'black', fontSize: '1.25rem', fontFamily: 'Arial Black' }}>
                     REGISTRE-SE
                   </button>
                 </Link>
@@ -149,41 +54,10 @@ function App() {
         </div>
       </section>
 
-      {/* Modal de Login */}
-      <div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 style={{ textAlign: 'center' }} class="modal-title fs-5" id="exampleModalLabel"></h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <h2 style={{ textAlign: 'center' }}>Bem-vindo de volta</h2>
-              <br></br>
-              <div className="row justify-content-center" style={{ margin: 'auto' }}>
-                <label>Email:</label>
-                <input id='txt_email_login' type='text' placeholder='voluntario@email.com'>
-                </input>
-                <br></br>
-                <label>Senha:</label>
-                <input id='txt_senha_login' type='text' placeholder='Senha#123'>
-                </input>
+      {/*Moidais*/}
+      <ModalLogin />
 
-
-                <button id='btn_login' style={{ border: 'none', backgroundColor: '#b2d7e4', color: 'black', width: 'fit-content', marginTop: '10px' }} type="button" class="btn btn-secondary" data-bs-dismiss="modal">LOGIN</button>
-
-
-              </div>
-            </div>
-            <div style={{ borderTop: 'solid 1px', alignContent: 'center' }} class="modal-footer" className="justify-content-center">
-              <h4 className="justify-content-center" style={{ marginTop: '10px', textAlign: 'center' }}>Não tem um perfil de voluntário?</h4>
-            </div>
-            <Link className="row justify-content-center" style={{ textDecoration: 'none' }} to="/registro">
-              <button style={{ border: 'none', backgroundColor: '#FF8C00', color: 'black', width: 'fit-content', marginBottom: '15px' }} type="button" class="btn btn-secondary" data-bs-dismiss="modal">Registre-se</button>
-            </Link>
-          </div>
-        </div>
-      </div>
+      
     </>
   )
 }
