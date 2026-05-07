@@ -119,8 +119,8 @@ function Registro() {
                     </span>
                   </div>
                 </div>
-                <Link to="/perfil">
-                  <button id='btn_registro_user' style={{ marginTop: '10px', width: '200px', height: '50px', fontSize: '1.25rem' }} class="btn btn-primary">Criar Conta</button>
+                <Link to="#">
+                  <button id='btn_registro_user' style={{ backgroundColor: '',fontFamily: 'Poppins', fontWeight: 'bold',marginTop: '10px', width: '200px', height: '50px', fontSize: '1.25rem' }} class="btn btn-primary">Criar Conta</button>
                 </Link>
               </div>
             </div>
