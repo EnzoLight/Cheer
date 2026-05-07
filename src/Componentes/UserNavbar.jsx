@@ -11,13 +11,9 @@ function UserNavbar() {
         <div className="container-fluid d-flex justify-content-center align-items-center">
 
           {/* Logo */}
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <a
-              style={{ color: '#FF8C00', fontSize: '2.25rem', fontFamily: 'Mogra', marginRight: '40px' }}
-              className="navbar-brand"
-            >
+          <Link style={{ color: '#FF8C00', fontSize: '2.25rem', fontFamily: 'Mogra', marginRight: '40px' }}
+              className="navbar-brand" to="/" style={{ textDecoration: 'none' }}>
               CHEER
-            </a>
           </Link>
 
           {/* Links e Pesquisa agrupados e centralizados */}
@@ -60,7 +56,7 @@ function UserNavbar() {
               </li>
 
               <li className="nav-item ms-3">
-                <a style={{ fontFamily: 'Archivo Black' }} className="nav-link" href="/sobre_nos">Sobre nós</a>
+                <a style={{ fontFamily: 'Archivo Black' }} className="nav-link" href="/SobreNos">Sobre nós</a>
               </li>
             </ul>
             {/* Barra de pesquisa */}
