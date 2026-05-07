@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import UserNavbar from '../../Componentes/UserNavbar';
-import './SobreNos.css'; // estilos específicos (opcional, mas pode usar inline)
+//import './SobreNos.css'; // estilos específicos (opcional, mas pode usar inline)
 // Se preferir manter tudo inline, use os estilos abaixo, mas é mais limpo com CSS module.
 
 function SobreNos() {
