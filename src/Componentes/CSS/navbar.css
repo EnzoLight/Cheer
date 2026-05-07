@@ -1,0 +1,103 @@
+.navbar-cheer {
+  background-color: var(--color-background-nav);
+  border-bottom: 1px solid var(--color-border-nav);
+}
+
+.navbar-brand-cheer {
+  color: var(--color-primary);
+  font-size: 2.25rem;
+  font-family: var(--font-brand);
+  margin-right: 40px;
+  text-decoration: none;
+}
+
+.nav-link-cheer {
+  font-family: var(--font-nav);
+}
+
+.hero-section {
+  background: linear-gradient(to bottom, var(--color-background-hero-start), var(--color-background-hero-end));
+  min-height: 91.2vh;
+  display: flex;
+  align-items: center;
+}
+
+.btn-primary-cheer {
+  width: 200px;
+  height: 50px;
+  margin-top: 10px;
+  background-color: var(--color-primary);
+  color: var(--color-primary-text);
+  font-size: 1.25rem;
+  font-family: 'Arial Black', sans-serif;
+  border: none;
+}
+
+.modal-btn-login {
+  border: none;
+  background-color: var(--color-background-hero-start);
+  color: var(--color-text);
+  width: fit-content;
+  margin-top: 10px;
+}
+
+.modal-btn-registro {
+  border: none;
+  background-color: var(--color-primary);
+  color: var(--color-primary-text);
+  width: fit-content;
+  margin-bottom: 15px;
+}
+
+.form-registro {
+  background-color: var(--color-primary);
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-registro label {
+  text-align: center;
+  width: 80%;
+  font-family: var(--font-body);
+  font-weight: bold;
+}
+
+.form-registro input {
+  width: 300px;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.titulo-registro {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: var(--font-brand);
+}
+
+.validation-box {
+  margin-top: 20px;
+  width: 400px;
+  background-color: var(--color-validation-box);
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.validation-valid {
+  color: var(--color-text-valid);
+  font-family: var(--font-body);
+}
+
+.validation-invalid {
+  color: var(--color-text-invalid);
+  font-family: var(--font-body);
+}
