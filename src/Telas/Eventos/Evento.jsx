@@ -133,12 +133,12 @@ function Evento() {
 
                 <h2 style={{color: 'black', fontWeight: 'bold'}}>Preferências: </h2>
                 <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-                  <button className="preferencias">Bom/Boa com números</button>
-                  <button className="preferencias">Organizado</button>
-                  <button className="preferencias">Prestativo</button>
+                  <span className="preferencias">Bom/Boa com números</span>
+                  <span className="preferencias">Organizado</span>
+                  <span className="preferencias">Prestativo</span>
                 </div>
 
-                <button id="voluntariar-se" className="btn btn-primary" style={{ fontFamily:'Poppins', fontWeight:'bold' ,padding: '15px 20px', fontSize: '30px', borderRadius: '40px', width: '100%' }}>VOLUNTARIAR-SE</button>
+                <button id="voluntariar-se" className="btn btn-primary" style={{ fontFamily:'Poppins', fontWeight:'bold' ,padding: '15px 20px', fontSize: '30px', borderRadius: '40px', width: '50%' }}>VOLUNTARIAR-SE</button>
 
 
               </div>

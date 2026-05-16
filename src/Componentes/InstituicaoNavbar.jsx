@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { HashLink } from 'react-router-hash-link';
 
-function UserNavbar() {
+function InstituicaoNavbar() {
   return (
     <div className='background d-flex'>
       <nav
@@ -155,4 +155,4 @@ function UserNavbar() {
   );
 }
 
-export default UserNavbar;
+export default InstituicaoNavbar;
