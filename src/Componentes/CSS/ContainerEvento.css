@@ -1,0 +1,10 @@
+.ContainerEvento{
+    background-color: #b2d7e4;
+}
+
+span{
+    font-size: calc(5px + 0.5vw);
+    width: min-content ;
+    align-content: center;
+    text-align: center;
+}

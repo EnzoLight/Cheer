@@ -12,14 +12,13 @@ function UserNavbar() {
       >
         <div className="container-fluid d-flex justify-content-center align-items-center">
 
-          {/* Logo */}
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <a
-              style={{ color: '#FF8C00', fontSize: '2.25rem', fontFamily: 'Mogra', marginRight: '40px' }}
-              className="navbar-brand"
-            >
-              CHEER
-            </a>
+          {/* CORRIGIDO: Removida a tag <a> interna. Estilos aplicados direto no <Link> */}
+          <Link 
+            to="/" 
+            style={{ color: '#FF8C00', fontSize: '2.25rem', fontFamily: 'Mogra', marginRight: '40px', textDecoration: 'none' }}
+            className="navbar-brand"
+          >
+            CHEER
           </Link>
 
           {/* Links e Pesquisa agrupados e centralizados */}
@@ -38,24 +37,25 @@ function UserNavbar() {
                 </a>
 
                 <ul className="nav-item ms-3 dropdown-menu dropdown-menu-end text-small text-decoration-none" aria-labelledby="dropdownEventos">
-                  <li><a className="dropdown-item" href="/eventos">Buscar Eventos</a></li>
+                  <li><Link className="dropdown-item" to="/eventos">Buscar Eventos</Link></li>
                   <li><a data-bs-toggle="modal" data-bs-target="#LoginModal" className="dropdown-item" href="#">Eventos Próximos</a></li>
                   <li><a data-bs-toggle="modal" data-bs-target="#LoginModal" className="dropdown-item" href="#">Eventos realizados</a></li>
                 </ul>
               </li>
+              
               <li className="nav-item dropdown ms-3">
                 <a
                   style={{ fontFamily: 'Poppins', fontWeight: 'Bold' }}
                   href="#"
                   className="nav-link text-dark text-decoration-none"
-                  id="dropdownEventos"
+                  id="dropdownInstituicoes"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   Instituições
                 </a>
 
-                <ul className="nav-item ms-3 dropdown-menu dropdown-menu-end text-small text-decoration-none" aria-labelledby="dropdownEventos">
+                <ul className="nav-item ms-3 dropdown-menu dropdown-menu-end text-small text-decoration-none" aria-labelledby="dropdownInstituicoes">
                   <li><a data-bs-toggle="modal" data-bs-target="#LoginModal" className="dropdown-item" href="#">Buscar Instituições</a></li>
                   <li><a data-bs-toggle="modal" data-bs-target="#LoginModal" className="dropdown-item" href="#">Instituições Seguidas</a></li>
                 </ul>
@@ -63,13 +63,16 @@ function UserNavbar() {
 
               <li className="nav-item ms-3">
                 <HashLink
-                  smooth // Ativa o scroll suave automaticamente
-                  to="/#sobre-nos" // Vai para a Home (/) e busca o ID (#sobre-cheer)
+                  smooth 
+                  to="/#sobre-nos" 
                   style={{ fontFamily: 'Poppins', fontWeight: 'bold', textDecoration: 'none' }}
                   className="nav-link"
-                > Sobre nós </HashLink>
+                > 
+                  Sobre nós 
+                </HashLink>
               </li>
             </ul>
+
             {/* Barra de pesquisa */}
             <div className="d-flex align-items-center">
               <form className="d-flex">
@@ -98,57 +101,42 @@ function UserNavbar() {
               <img src="src/assets/boy.png" alt="mdo" width="50" height="50" className="rounded-circle" />
             </a>
             <ul className="dropdown-menu dropdown-menu-end text-small" aria-labelledby="dropdownUser1">
-              <div className="d-flex" display="flex" align-items="center">
-                <li><a className="dropdown-item" href="#">Login</a></li>
-                <img src="src/assets/user.png"
-                  width="20px"
-                  height="20px"
-                  margin="auto"
-                />
+              
+              {/* CORRIGIDO: Atributos HTML puros como display e align-items removidos e corrigidos via style */}
+              <div className="d-flex align-items-center justify-content-between p-1">
+                <li><Link className="dropdown-item" to="#">Login</Link></li>
+                <img style={{ marginTop: '2px' }} src="src/assets/user.png" width="20" height="20" alt="" />
               </div>
-              <div className="d-flex" display="flex" align-items="center">
-                <li><a className="dropdown-item" href="#">Meu Perfil</a></li>
-                <img src="src/assets/setting.png"
-                  width="20px"
-                  height="20px"
-                  margin="auto"
-                />
+              
+              <div className="d-flex align-items-center justify-content-between p-1">
+                <li><Link className="dropdown-item" to="/perfil">Meu Perfil</Link></li>
+                <img style={{ marginTop: '2px' }} src="src/assets/setting.png" width="20" height="20" alt="" />
               </div>
-              <div className="d-flex" display="flex" align-items="center">
-                <li><a className="dropdown-item" href="#">Ajustar preferências</a></li>
-                <img src="src/assets/setting.png"
-                  width="20px"
-                  height="20px"
-                  margin="auto"
-                />
+              
+              <div className="d-flex align-items-center justify-content-between p-1">
+                <li><Link className="dropdown-item" to="#">Preferências</Link></li>
+                <img style={{ marginTop: '2px' }} src="src/assets/setting.png" width="20" height="20" alt="" />
               </div>
-              <div className="d-flex" display="flex" align-items="center">
-                <li><a className="dropdown-item" href="#">Atividade</a></li>
-                <img src="src/assets/form.png"
-                  width="30px"
-                  height="30px"
-                  margin="auto"
-                />
+              
+              <div className="d-flex align-items-center justify-content-between p-1">
+                <li><Link className="dropdown-item" to="#">Atividade</Link></li>
+                <img style={{ marginTop: '2px' }} src="src/assets/form.png" width="20" height="20" alt="" />
               </div>
+              
               <li><hr className="dropdown-divider" /></li>
-              <div className="d-flex" display="flex" align-items="center">
-                <li><a className="dropdown-item" href="#">Opções</a></li>
-                <img src="src/assets/setting.png"
-                  width="20px"
-                  height="20px"
-                  margin="auto"
-                />
+              
+              <div className="d-flex align-items-center justify-content-between p-1">
+                <li><Link className="dropdown-item" to="#">Opções</Link></li>
+                <img style={{ marginTop: '2px' }} src="src/assets/setting.png" width="20" height="20" alt="" />
               </div>
-              <div className="d-flex" display="flex" align-items="center">
-                <li><a className="dropdown-item" href="#">Sair</a></li>
-                <img src="src/assets/logout.png"
-                  width="20px"
-                  height="20px"
-                  margin="auto"
-                />
+              
+              <div className="d-flex align-items-center justify-content-between p-1">
+                <li><Link className="dropdown-item" to="#">Sair</Link></li>
+                <img style={{ marginTop: '2px' }} src="src/assets/logout.png" width="20" height="20" alt="" />
               </div>
             </ul>
           </div>
+
         </div>
       </nav>
     </div>

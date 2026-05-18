@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import "./CriarEvento.css"
 import { Link } from 'react-router-dom'
+import ContainerEvento from '../../Componentes/ContainerEvento';
 import UserNavbar from '../../Componentes/InstituicaoNavbar';
 import ModalLogin from '../../Componentes/Modais/ModalLogin'
 import { motion } from "framer-motion";
@@ -7,20 +9,59 @@ import { ScrollAnimate } from "../../Componentes/animacaoScroll";
 import InstituicaoNavbar from '../../Componentes/InstituicaoNavbar';
 
 function CriarEvento() {
+    //Teste de formatação de eventos
+    const [eventos, setEventos] = useState([
+        { id: 1, titulo: "Arrecadação de Alimentos", descricao: "Ajude famílias carentes da região central.", data_hora_inicio: "20/05/2024 08:00", data_hora_fim: "20/05/2024 14:00", local: "Centro" },
+        { id: 2, titulo: "Mutirão de Limpeza", descricao: "Limpeza da praia e conscientização ambiental.", data_hora_inicio: "22/05/2024 10:00", data_hora_fim: "22/05/2024 12:00", local: "Praia do Sol" },
+        { id: 3, titulo: "Aula de Reforço", descricao: "Voluntários para ensinar matemática para crianças.", data_hora_inicio: "25/05/2024 14:00", data_hora_fim: "25/05/2024 15:30", local: "Escola Municipal" },
+        { id: 4, titulo: "Campanha de Doação de Sangue", descricao: "Parceria com o Hemocentro para salvar vidas.", data_hora_inicio: "28/05/2024 09:00", data_hora_fim: "28/05/2024 17:00", local: "Hospital Santa Casa" },
+        { id: 5, titulo: "Oficina de Reciclagem", descricao: "Ensine crianças a transformar lixo em arte.", data_hora_inicio: "30/05/2024 14:00", data_hora_fim: "30/05/2024 16:00", local: "Centro Comunitário" },
+        { id: 6, titulo: "Passeio com Cães do Abrigo", descricao: "Dê carinho e exercício para animais resgatados.", data_hora_inicio: "01/06/2024 08:30", data_hora_fim: "01/06/2024 11:00", local: "Abrigo Patas Felizes" },
+        { id: 7, titulo: "Distribuição de Agasalhos", descricao: "Entrega de cobertores e roupas para moradores de rua.", data_hora_inicio: "03/06/2024 20:00", data_hora_fim: "03/06/2024 23:00", local: "Praça da Sé" }
+    ]);
     return (
         <>
-            <section style={{ background: 'linear-gradient(to bottom, #d9fcd6, #FFFFFF )', minHeight: '100vh' }}>
+            <section style={{ background: 'linear-gradient(to bottom, #d9fcd6, #FFFFFF )', minHeight: '92vh' }}>
                 <InstituicaoNavbar />
 
-                <div className='container mt-5' style={{width: '100%', height: '100%'}}> 
+                <div className='container mt-5' style={{ width: '100%', height: '100%', alignContent: 'center', alignItems: 'center' }}>
                     <div className='row d-flex align-items-center' style={{ minHeight: '400px' }}>
-                        
-                        <div style={{ backgroundColor: 'yellow', minHeight: '660px' }} className='col-md-8'>
-                            <h2>Coluna 1</h2>
+
+                        <div className='sub_container col-md-7' style={{ backgroundColor: '#fffcf7', minHeight: '660px', marginTop: '30px' }}>
+                            <h2 className='titulo'>Detalhes do Evento</h2>
+                            <p className='descricao'>Insira os detalhes do evento a ser criado</p>
+                            <div style={{ justifySelf: 'center', backgroundColor: 'red', borderRadius: '5%', width: '500px', height: '700px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                                <label style={{ textAlign: 'center', width: '80%', fontFamily: 'Source-Sans-3', fontWeight: 'bold' }}>Nome Completo:</label>
+                                <input style={{ width: '300px', height: '30px', marginBottom: '10px' }} type="text" placeholder="Digite seu nome completo" />
+
+                                <label style={{ textAlign: 'center', width: '80%', fontFamily: 'Source-Sans-3', fontWeight: 'bold' }}>Email:</label>
+                                <input style={{ width: '300px', height: '30px', marginBottom: '10px' }} type="email" placeholder="Digite seu email" />
+
+                                <label style={{ textAlign: 'center', width: '80%', fontFamily: 'Source-Sans-3', fontWeight: 'bold' }}>Telefone:</label>
+                                <input style={{ width: '300px', height: '30px', marginBottom: '10px' }} type="tel" placeholder="Digite seu telefone" />
+
+                                <label style={{ textAlign: 'center', width: '80%', fontFamily: 'Source-Sans-3', fontWeight: 'bold' }}>CPF:</label>
+                                <input style={{ width: '300px', height: '30px', marginBottom: '10px' }} type="text" placeholder="Digite seu CPF" />
+                            </div>
                         </div>
-                        
-                        <div style={{ backgroundColor: 'green', minHeight: '660px' }} className='col-md-4'>
-                            <h2>Coluna 2</h2>
+                        <div className='col-md-1'>
+
+                        </div>
+                        <div className='sub_container col-md-4' style={{ backgroundColor: '#fffcf7', minHeight: '660px', marginTop: '30px' }}>
+                            <h2 className='titulo' style={{ marginBottom: '20px' }}>Eventos Próximos</h2>
+                            <div style={{ maxHeight: '550px', overflowY: 'auto', paddingRight: '5px' }}>
+                                {eventos.map(evento => (
+                                    <ContainerEvento
+                                        key={evento.id}
+                                        titulo={evento.titulo}
+                                        descricao={evento.descricao}
+                                        data_hora_inicio={evento.data_hora_inicio}
+                                        data_hora_fim={evento.data_hora_fim}
+                                        local={evento.local}
+                                    />
+                                ))}
+                            </div>
+
                         </div>
 
                     </div>

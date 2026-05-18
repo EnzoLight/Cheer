@@ -2,7 +2,7 @@ import { useState } from 'react'
 import "./Registro.css"
 import { Link } from 'react-router-dom'
 import UserNavbar from '../../Componentes/UserNavbar';
-import ModalLogin from '../../Componentes/Modais/ModalLogin'
+import ModalLogin from '../../Componentes/Modais/ModalLogin';
 
 function Registro() {
   const [password, setPassword] = useState('');
