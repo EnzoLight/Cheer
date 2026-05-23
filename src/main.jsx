@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import './index.css'
+import './Componentes/CSS/index.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from './Telas/Home/App.jsx'
 import Registro from './Telas/Registre-se/Registro'

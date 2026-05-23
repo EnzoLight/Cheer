@@ -1,4 +1,3 @@
-import "./Perfil.css";
 import { Link } from 'react-router-dom'
 import UserNavbar from '../../Componentes/UserNavbar';
 import ModalLogin from '../../Componentes/Modais/ModalLogin'

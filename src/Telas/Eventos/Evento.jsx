@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import "./Evento.css";
 import { Link } from 'react-router-dom';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import UserNavbar from '../../Componentes/UserNavbar';
