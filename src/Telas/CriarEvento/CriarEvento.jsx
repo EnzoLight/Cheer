@@ -30,9 +30,72 @@ function CriarEvento() {
                         <div className='sub_container col-md-7' style={{ backgroundColor: '#fffcf7', minHeight: '660px', marginTop: '30px' }}>
                             <h2 className='titulo'>Detalhes do Evento</h2>
                             <p className='descricao'>Insira os detalhes do evento a ser criado</p>
-                            <div style={{ justifySelf: 'center', backgroundColor: 'red', borderRadius: '5%', width: '500px', height: '700px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                                <label style={{ textAlign: 'center', width: '80%', fontFamily: 'Source-Sans-3', fontWeight: 'bold' }}>Nome Completo:</label>
-                                <input style={{ width: '300px', height: '30px', marginBottom: '10px' }} type="text" placeholder="Digite seu nome completo" />
+                            <div style={{ justifySelf: 'center', backgroundColor: '#87b8e6', borderRadius: '5%', width: '700px', height: '700px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                                <div className="row justify-content-center">
+                                    {/*Lado Esquerdo*/}
+                                    <div className="col-md-6 d-flex flex-column gap-3">
+                                        <div>
+                                            <label className="form-label fw-bold">Título do Evento:</label>
+                                            <input
+                                                className="form-control shadow-sm"
+                                                type="text"
+                                                placeholder="Digite o Título"
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label className="form-label fw-bold">Selecione o tipo de evento:</label>
+                                            <select className="form-select shadow-sm">
+                                                <option defaultValue>Tipo de evento</option>
+                                                <option value="1">Doação</option>
+                                                <option value="2">Arrecadação</option>
+                                                <option value="3">Organização</option>
+                                                <option value="4">Preparação</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    {/*Lado Direito*/}
+                                    <div className="col-md-6">
+                                        <label className="form-label fw-bold">Descrição do Evento:</label>
+                                        <textarea
+                                            className="form-control shadow-sm"
+                                            rows="5"
+                                            placeholder="Descreva os detalhes do evento..."
+                                            style={{ width: '300px', height: 'calc(100% - 32px)', resize: 'none' }}
+                                        ></textarea>
+
+                                        <label className="form-label fw-bold">Número de voluntários máximo:</label>
+                                        <input type='number'></input>
+                                    </div>
+                                </div>
+
+                                <div className="container-fluid">
+                                    <div className="row justify-content-center align-items-center gap-4 py-4">
+                                        {/* Bloco 1 */}
+                                        <div className="col-auto">
+                                            <div className="d-flex flex-column">
+                                                <label className="form-label fw-bold mb-2">Data/Hora de Início</label>
+                                                <div className="d-flex gap-2">
+                                                    <input type="date" className="form-control" />
+                                                    <input type="time" className="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Bloco 2 */}
+                                        <div className="col-auto">
+                                            <div className="d-flex flex-column">
+                                                <label className="form-label fw-bold mb-2">Data/Hora de Fim</label>
+                                                <div className="d-flex gap-2">
+                                                    <input type="date" className="form-control" />
+                                                    <input type="time" className="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
 
                                 <label style={{ textAlign: 'center', width: '80%', fontFamily: 'Source-Sans-3', fontWeight: 'bold' }}>Email:</label>
                                 <input style={{ width: '300px', height: '30px', marginBottom: '10px' }} type="email" placeholder="Digite seu email" />
