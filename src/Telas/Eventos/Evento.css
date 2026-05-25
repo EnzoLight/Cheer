@@ -1,0 +1,172 @@
+.detalhes {
+    font-size:  35px;
+}
+
+#voluntariar-se {
+    transition: 0.3s ease, color 0.3s ease;
+    background-color: #277BC0;
+    color:#fffcf7;
+}
+
+#voluntariar-se:hover {
+    background-color: #fffcf7;
+    color: #000;
+    transform: scale(1.05);
+}
+
+.textinho {
+    color: 'black';
+    font-weight: 'bold';
+}
+
+/* Main Container */
+.evento-main-container {
+    background: linear-gradient(to bottom, #ffd497, #FFFFFF);
+    min-height: 91.2vh;
+    display: flex;
+    flex-direction: row;
+    padding: 40px;
+    gap: 40px;
+}
+
+/* Left Section - Map */
+.evento-left-section {
+    opacity: 0.8;
+    background-color: #fffcf7;
+    width: 80%;
+    height: 100%;
+    padding: 30px;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.evento-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+.evento-map-container {
+    width: 100%;
+    height: 620px;
+    padding: 30px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.evento-inputs-container {
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 30px;
+    background-color: #8ac9e0;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    width: 850px;
+    gap: 10px;
+}
+
+.evento-inputs-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.evento-inputs-row:not(:first-child) {
+    margin-top: 10px;
+}
+
+.evento-input-label {
+    color: black;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.evento-input-field {
+    margin-left: 10px;
+}
+
+.evento-input-cep {
+    width: 200px;
+}
+
+.evento-input-rua {
+    width: 300px;
+}
+
+.evento-input-numero {
+    width: 100px;
+}
+
+.evento-input-bairro {
+    width: 200px;
+}
+
+.evento-input-uf {
+    width: 100px;
+}
+
+.evento-input-cidade {
+    width: 200px;
+}
+
+.evento-input-complemento {
+    width: 300px;
+}
+
+.evento-search-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Right Section - Details */
+.evento-right-section {
+    background-color: #fffcf7;
+    width: 60%;
+    height: 100%;
+    padding: 30px;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.evento-details-container {
+    margin-top: 15px;
+    background-color: #fca63d;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    color: #000000;
+    justify-content: space-between;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.evento-preferences-label {
+    color: black;
+    font-weight: bold;
+}
+
+.evento-preferences-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#voluntariar-se {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    padding: 15px 20px;
+    font-size: 30px;
+    border-radius: 40px;
+    width: 50%;
+}
