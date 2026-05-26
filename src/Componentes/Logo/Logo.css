@@ -1,0 +1,19 @@
+.cheer-brand-link {
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+  padding: 0;
+}
+
+.cheer-logo {
+  width: 52px;
+  height: 51px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cheer-logo-image {
+  display: block;
+  width: 52px;
+  height: auto;
+}
