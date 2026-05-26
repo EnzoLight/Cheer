@@ -8,14 +8,14 @@ export default function Mapa() {
     <MapContainer
       center={position}
       zoom={21}
-      style={{ height: "100vh", width: "100%" }}
+      className="w-100 h-100"
     >
       <TileLayer
         attribution="&copy; Supimpa"
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Marker position={position}>
-        <Popup>Säo Paulo</Popup>
+        <Popup>São Paulo</Popup>
       </Marker>
     </MapContainer>
   );

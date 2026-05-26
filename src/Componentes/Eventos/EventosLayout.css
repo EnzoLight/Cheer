@@ -1,0 +1,74 @@
+.eventos-page,
+.eventos-main {
+  min-height: calc(100vh - 70px);
+}
+
+.eventos-main {
+  background: var(--background-auth-page);
+}
+
+.eventos-panel {
+  border-radius: var(--card-radius);
+  background: var(--color-surface);
+  box-shadow: var(--card-shadow);
+}
+
+.eventos-kicker {
+  color: var(--color-accent);
+  font-family: Poppins, sans-serif;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.eventos-panel-header h1 {
+  color: var(--color-panel-text);
+  font-family: Poppins, sans-serif;
+  font-size: clamp(1.32rem, 2vw, 1.65rem);
+  font-weight: 700;
+}
+
+.eventos-panel-copy {
+  color: var(--color-muted-text);
+  font-family: Poppins, sans-serif;
+  font-size: 0.87rem;
+  line-height: 1.55;
+}
+
+.eventos-list-panel {
+  position: sticky;
+  top: 92px;
+}
+
+.eventos-lista {
+  max-height: calc(100vh - 252px);
+}
+
+.eventos-lista::-webkit-scrollbar {
+  width: 6px;
+}
+
+.eventos-lista::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(32, 46, 54, 0.14);
+}
+
+.eventos-textarea {
+  min-height: 108px;
+  resize: vertical;
+}
+
+.eventos-address {
+  border-color: #edf1f3 !important;
+  background: #fbfcfd;
+}
+
+@media (max-width: 991.98px) {
+  .eventos-list-panel {
+    position: static;
+  }
+
+  .eventos-lista {
+    max-height: 600px;
+  }
+}
