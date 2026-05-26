@@ -1,0 +1,85 @@
+.login-modal-content {
+  border-radius: var(--card-radius);
+  background: var(--color-surface);
+  box-shadow: var(--card-shadow);
+}
+
+.login-modal-aside {
+  border-right: 1px solid var(--color-brand-border);
+  background: var(--color-primary-soft);
+}
+
+.login-modal-logo.cheer-logo {
+  width: 58px;
+  height: 56px;
+}
+
+.login-modal-logo .cheer-logo-image {
+  width: 58px;
+}
+
+.login-modal-kicker {
+  color: var(--color-accent);
+  font-family: Poppins, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.login-modal-aside h2,
+.login-modal-header h2 {
+  color: var(--color-panel-text);
+  font-family: Poppins, sans-serif;
+  font-weight: 700;
+}
+
+.login-modal-aside h2 {
+  font-size: clamp(1.28rem, 2vw, 1.52rem);
+}
+
+.login-modal-header h2 {
+  font-size: 1.45rem;
+}
+
+.login-modal-copy,
+.login-modal-header > p:last-of-type,
+.login-modal-register p {
+  color: var(--color-muted-text);
+  font-family: Poppins, sans-serif;
+  font-size: 0.84rem;
+}
+
+.login-modal-trust {
+  border: 1px solid var(--color-brand-border);
+  background: var(--color-surface);
+  color: var(--color-primary);
+}
+
+.login-modal-trust span {
+  color: #4c5c64;
+  font-family: Poppins, sans-serif;
+  font-size: 0.75rem;
+}
+
+.login-modal-close {
+  background-color: var(--color-primary-soft);
+}
+
+.login-modal-form .cheer-control.form-control {
+  background-color: #fcfdfe;
+}
+
+.login-modal-register {
+  border-color: #edf1f3 !important;
+}
+
+.login-modal-register .btn {
+  font-family: Poppins, sans-serif;
+  font-size: 0.76rem;
+}
+
+@media (max-width: 767.98px) {
+  .login-modal-content {
+    border-radius: 18px;
+  }
+}
