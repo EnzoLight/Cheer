@@ -1,5 +1,4 @@
 import React from 'react';
-import "./CSS/ContainerEvento.css";
 
 const ContainerEvento = ({ titulo, descricao, data_hora_inicio, data_hora_fim, local }) => {
     return (

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import "./CriarEvento.css"
 import { Link } from 'react-router-dom'
 import ContainerEvento from '../../Componentes/ContainerEvento';
 import UserNavbar from '../../Componentes/InstituicaoNavbar';
