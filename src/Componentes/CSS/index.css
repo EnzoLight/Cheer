@@ -440,6 +440,22 @@ button {
 }
 
 /* =============================================
+   Adicionais - css inlines que se repetem mas
+   não são definidos por uma classe específica
+   ============================================= */
+
+   .container-card-intro {
+    backgroundColor: '#f2ffff';
+    borderRadius: '20px';
+    opacity: '0.8';
+    padding: '40px 20px';
+    display: 'flex';
+    flexDirection: 'column';
+    justifyContent: 'center';
+    alignItems: 'center';
+   }
+
+/* =============================================
    LOADER
    ============================================= */
 .loader {

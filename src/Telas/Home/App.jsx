@@ -8,7 +8,7 @@ import { ScrollAnimate } from "../../Componentes/animacaoScroll";
 function App() {
   return (
     <>
-      <section id="center" style={{ background: 'linear-gradient(to bottom, #fdf1e3, #FFFFFF )' }}>
+      <section id="center" className="hero-home">
         <UserNavbar />
 
         <div className="container-fluid" style={{ minHeight: '91.2vh', display: 'flex', alignItems: 'center' }}>
