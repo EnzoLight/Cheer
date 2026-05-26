@@ -1,33 +1,43 @@
-import { useState } from 'react'
-import "./Registro.css"
-import UserNavbar from '../../Componentes/UserNavbar';
-import ModalLogin from '../../Componentes/Modais/ModalLogin';
-import Input from '../../Componentes/Input/Input';
-import { CreditCard, Lock, Mail, Phone, UserRound } from 'lucide-react';
-import { registerVoluntario } from '../../Servicos/cheerApi';
-import BuscarEndereco from '../../Componentes/BuscarEndereco';
+import { useState } from "react";
+import "../Registre-se/Registro.css";
+import UserNavbar from "../../Componentes/UserNavbar";
+import ModalLogin from "../../Componentes/Modais/ModalLogin";
+import Input, { Select } from "../../Componentes/Input/Input";
+import BuscarEndereco from "../../Componentes/BuscarEndereco";
+import { Building2, CalendarDays, CreditCard, Lock, Mail, Phone, Tag } from "lucide-react";
+import { registerInstituicao } from "../../Servicos/cheerApi";
 
 const emptyAddress = {
-  codigo_postal: '',
-  numero: '',
-  complemento: '',
-  rua: '',
-  bairro: '',
-  uf: '',
-  cidade: '',
+  codigo_postal: "",
+  numero: "",
+  complemento: "",
+  rua: "",
+  bairro: "",
+  uf: "",
+  cidade: "",
 };
 
 const initialFormData = {
-  nome: '',
-  email: '',
-  telefone: '',
-  cpf: '',
-  password: '',
-  passwordConfirmation: '',
+  nome: "",
+  email: "",
+  telefone: "",
+  cnpj: "",
+  tipo: "",
+  categoria: "",
+  ano_fundacao: "",
+  internacional: "",
+  password: "",
+  passwordConfirmation: "",
   endereco: emptyAddress,
 };
 
-function Registro() {
+const currentYear = new Date().getFullYear();
+
+function onlyDigits(value) {
+  return value.replace(/\D/g, "");
+}
+
+function CadastroInstituicao() {
   const [formData, setFormData] = useState(initialFormData);
   const [feedback, setFeedback] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,12 +57,8 @@ function Registro() {
 
     setFormData((currentData) => ({
       ...currentData,
-      [name]: name === 'uf' ? value.toUpperCase() : value,
+      [name]: value,
     }));
-  }
-
-  function onlyDigits(value) {
-    return value.replace(/\D/g, '');
   }
 
   function updateAddress(address) {
@@ -66,18 +72,26 @@ function Registro() {
     event.preventDefault();
     setFeedback(null);
 
+    if (onlyDigits(formData.cnpj).length !== 14) {
+      setFeedback({
+        type: "error",
+        message: "Informe um CNPJ válido com 14 números.",
+      });
+      return;
+    }
+
     if (!hasValidPassword) {
       setFeedback({
-        type: 'error',
-        message: 'A senha precisa atender a todos os requisitos informados.',
+        type: "error",
+        message: "A senha precisa atender a todos os requisitos informados.",
       });
       return;
     }
 
     if (formData.password !== formData.passwordConfirmation) {
       setFeedback({
-        type: 'error',
-        message: 'A confirmacao de senha nao corresponde a senha criada.',
+        type: "error",
+        message: "A confirmação de senha não corresponde à senha criada.",
       });
       return;
     }
@@ -85,12 +99,16 @@ function Registro() {
     setIsSubmitting(true);
 
     try {
-      await registerVoluntario({
+      await registerInstituicao({
         nome: formData.nome.trim(),
         email: formData.email.trim(),
         password: formData.password,
         telefone: formData.telefone ? onlyDigits(formData.telefone) : null,
-        cpf: onlyDigits(formData.cpf),
+        cnpj: onlyDigits(formData.cnpj),
+        tipo: formData.tipo.trim() || null,
+        ano_fundacao: formData.ano_fundacao ? Number(formData.ano_fundacao) : null,
+        categoria: formData.categoria.trim() || null,
+        internacional: formData.internacional === "" ? null : formData.internacional === "true",
         endereco: {
           rua: formData.endereco.rua.trim(),
           bairro: formData.endereco.bairro.trim(),
@@ -101,16 +119,16 @@ function Registro() {
       });
 
       setFeedback({
-        type: 'success',
-        message: 'Cadastro realizado. Entre na sua conta para continuar.',
+        type: "success",
+        message: "Instituição cadastrada. Entre na sua conta para continuar.",
       });
       setFormData({ ...initialFormData, endereco: { ...emptyAddress } });
       setAddressVersion((version) => version + 1);
     } catch (error) {
-      const fields = error.fields?.length ? ` Campos: ${error.fields.join(', ')}.` : '';
+      const fields = error.fields?.length ? ` Campos: ${error.fields.join(", ")}.` : "";
       setFeedback({
-        type: 'error',
-        message: `${error.message || 'Nao foi possivel realizar o cadastro.'}${fields}`,
+        type: "error",
+        message: `${error.message || "Não foi possível cadastrar a instituição."}${fields}`,
       });
     } finally {
       setIsSubmitting(false);
@@ -127,37 +145,37 @@ function Registro() {
           <div className="card border-0 overflow-hidden registro-card">
             <div className="row g-0">
             <aside className="col-lg-4 p-4 p-xl-5 d-flex flex-column justify-content-center registro-intro">
-              <p className="registro-kicker">CHEER VOLUNTÁRIO</p>
-              <h1>Crie sua conta</h1>
+              <p className="registro-kicker">CHEER INSTITUIÇÃO</p>
+              <h1>Cadastre sua instituição</h1>
               <p className="registro-copy">
-                Encontre eventos, acompanhe suas ações e conecte-se a projetos
-                que precisam da sua ajuda.
+                Conecte sua organização a voluntários e prepare-se para publicar
+                novas oportunidades de impacto.
               </p>
 
               <div className="card border-0 p-3 registro-password-panel" aria-live="polite">
                 <h2>Sua senha precisa ter:</h2>
                 <ul className="list-unstyled mb-0">
-                  <li className={`d-flex align-items-center gap-2 mt-2 ${validations.hasUpper ? 'is-valid' : ''}`}>
+                  <li className={`d-flex align-items-center gap-2 mt-2 ${validations.hasUpper ? "is-valid" : ""}`}>
                     <span className="registro-rule-icon" aria-hidden="true">
-                      {validations.hasUpper ? '✓' : ''}
+                      {validations.hasUpper ? "✓" : ""}
                     </span>
                     Uma letra maiúscula
                   </li>
-                  <li className={`d-flex align-items-center gap-2 mt-2 ${validations.hasNumber ? 'is-valid' : ''}`}>
+                  <li className={`d-flex align-items-center gap-2 mt-2 ${validations.hasNumber ? "is-valid" : ""}`}>
                     <span className="registro-rule-icon" aria-hidden="true">
-                      {validations.hasNumber ? '✓' : ''}
+                      {validations.hasNumber ? "✓" : ""}
                     </span>
                     Pelo menos um número
                   </li>
-                  <li className={`d-flex align-items-center gap-2 mt-2 ${validations.minLength ? 'is-valid' : ''}`}>
+                  <li className={`d-flex align-items-center gap-2 mt-2 ${validations.minLength ? "is-valid" : ""}`}>
                     <span className="registro-rule-icon" aria-hidden="true">
-                      {validations.minLength ? '✓' : ''}
+                      {validations.minLength ? "✓" : ""}
                     </span>
                     Mínimo de 8 caracteres
                   </li>
-                  <li className={`d-flex align-items-center gap-2 mt-2 ${validations.hasSpecial ? 'is-valid' : ''}`}>
+                  <li className={`d-flex align-items-center gap-2 mt-2 ${validations.hasSpecial ? "is-valid" : ""}`}>
                     <span className="registro-rule-icon" aria-hidden="true">
-                      {validations.hasSpecial ? '✓' : ''}
+                      {validations.hasSpecial ? "✓" : ""}
                     </span>
                     Um caractere especial (!@#$%^&*)
                   </li>
@@ -167,29 +185,29 @@ function Registro() {
 
             <form className="col-lg-8 p-4 p-xl-5 registro-form" onSubmit={handleSubmit}>
               <div className="registro-form-header">
-                <h2>Preencha seus dados</h2>
-                <p>Informe seus dados e endereço para criar seu perfil.</p>
+                <h2>Dados institucionais</h2>
+                <p>Informe os dados da organização e o endereço de atuação.</p>
               </div>
 
               <div className="row g-3">
                 <Input
-                  id="full-name"
+                  id="institution-name"
                   name="nome"
-                  label="Nome completo"
-                  placeholder="Digite seu nome completo"
-                  autoComplete="name"
+                  label="Nome da instituição"
+                  placeholder="Instituto Esperança"
+                  autoComplete="organization"
                   required
-                  Icon={UserRound}
+                  Icon={Building2}
                   value={formData.nome}
                   onChange={updateField}
                   containerClassName="col-12 mb-0"
                 />
                 <Input
-                  id="email"
+                  id="institution-email"
                   name="email"
                   type="email"
-                  label="Email"
-                  placeholder="voluntario@email.com"
+                  label="Email institucional"
+                  placeholder="contato@instituto.org"
                   autoComplete="email"
                   required
                   Icon={Mail}
@@ -198,7 +216,7 @@ function Registro() {
                   containerClassName="col-12 mb-0"
                 />
                 <Input
-                  id="phone"
+                  id="institution-phone"
                   name="telefone"
                   type="tel"
                   label="Telefone (opcional)"
@@ -211,20 +229,66 @@ function Registro() {
                   containerClassName="col-md-6 mb-0"
                 />
                 <Input
-                  id="cpf"
-                  name="cpf"
-                  label="CPF"
-                  placeholder="000.000.000-00"
+                  id="institution-cnpj"
+                  name="cnpj"
+                  label="CNPJ"
+                  placeholder="00.000.000/0001-00"
                   inputMode="numeric"
-                  maxLength={14}
+                  maxLength={18}
                   required
                   Icon={CreditCard}
-                  value={formData.cpf}
+                  value={formData.cnpj}
                   onChange={updateField}
                   containerClassName="col-md-6 mb-0"
                 />
                 <Input
-                  id="password"
+                  id="institution-type"
+                  name="tipo"
+                  label="Tipo (opcional)"
+                  placeholder="ONG"
+                  Icon={Building2}
+                  value={formData.tipo}
+                  onChange={updateField}
+                  containerClassName="col-md-6 mb-0"
+                />
+                <Input
+                  id="institution-category"
+                  name="categoria"
+                  label="Categoria (opcional)"
+                  placeholder="Educação"
+                  Icon={Tag}
+                  value={formData.categoria}
+                  onChange={updateField}
+                  containerClassName="col-md-6 mb-0"
+                />
+                <Input
+                  id="institution-founded"
+                  name="ano_fundacao"
+                  type="number"
+                  label="Ano de fundação (opcional)"
+                  placeholder="2010"
+                  min={1800}
+                  max={currentYear}
+                  step={1}
+                  Icon={CalendarDays}
+                  value={formData.ano_fundacao}
+                  onChange={updateField}
+                  containerClassName="col-md-6 mb-0"
+                />
+                <Select
+                  id="institution-international"
+                  name="internacional"
+                  label="Atuação internacional (opcional)"
+                  value={formData.internacional}
+                  onChange={updateField}
+                  containerClassName="col-md-6 mb-0"
+                >
+                  <option value="">Não informado</option>
+                  <option value="false">Não</option>
+                  <option value="true">Sim</option>
+                </Select>
+                <Input
+                  id="institution-password"
                   name="password"
                   type="password"
                   label="Senha"
@@ -238,7 +302,7 @@ function Registro() {
                   containerClassName="col-md-6 mb-0"
                 />
                 <Input
-                  id="password-confirmation"
+                  id="institution-password-confirmation"
                   name="passwordConfirmation"
                   type="password"
                   label="Confirmar senha"
@@ -258,32 +322,32 @@ function Registro() {
                   onChange={updateAddress}
                   required
                   showExtraFields={false}
-                  title="Endereço"
-                  idPrefix="registro-endereco"
+                  title="Endereço da instituição"
+                  idPrefix="instituicao-endereco"
                   className="col-12 mt-2 pt-3 border-top registro-endereco"
                 />
               </div>
 
               {feedback && (
                 <p
-                  className={`alert mt-3 mb-0 registro-feedback ${feedback.type === 'error' ? 'alert-danger' : 'alert-success'}`}
-                  role={feedback.type === 'error' ? 'alert' : 'status'}
+                  className={`alert mt-3 mb-0 registro-feedback ${feedback.type === "error" ? "alert-danger" : "alert-success"}`}
+                  role={feedback.type === "error" ? "alert" : "status"}
                 >
                   {feedback.message}
                 </p>
               )}
 
               <button
-                id="btn_registro_user"
+                id="btn_registro_instituicao"
                 className="btn btn-primary cheer-btn-primary w-100 py-3 fw-bold mt-3 registro-submit"
                 type="submit"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Criando conta...' : 'Criar conta'}
+                {isSubmitting ? "Cadastrando instituição..." : "Cadastrar instituição"}
               </button>
 
               <p className="text-center mt-4 mb-0 registro-login">
-                Já tem cadastro?
+                Sua instituição já tem cadastro?
                 <button className="btn btn-link p-0 ms-1 registro-login-action" type="button" data-bs-toggle="modal" data-bs-target="#LoginModal">
                   Entrar
                 </button>
@@ -297,7 +361,7 @@ function Registro() {
 
       <ModalLogin />
     </>
-  )
+  );
 }
 
-export default Registro
+export default CadastroInstituicao;

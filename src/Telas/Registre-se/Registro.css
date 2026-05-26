@@ -1,0 +1,125 @@
+.registro-page,
+.registro-main {
+  min-height: calc(100vh - 70px);
+}
+
+.registro-main {
+  background: var(--background-auth-page);
+}
+
+.registro-card {
+  max-width: 1060px;
+  margin: 0 auto;
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+}
+
+.registro-intro {
+  color: var(--color-panel-text);
+  background: var(--color-primary-soft);
+  border-right: 1px solid var(--color-brand-border);
+}
+
+.registro-kicker {
+  color: var(--color-accent);
+  font-family: Poppins, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.registro-intro h1 {
+  color: var(--color-panel-text);
+  font-family: Mogra, Poppins, sans-serif;
+  font-size: clamp(2rem, 3vw, 2.45rem);
+}
+
+.registro-copy {
+  color: #596870;
+  font-family: Poppins, sans-serif;
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.registro-password-panel {
+  background: #fff;
+}
+
+.registro-password-panel h2 {
+  color: #34444d;
+  font-family: Poppins, sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.registro-password-panel li {
+  color: var(--color-muted-text);
+  font-family: Poppins, sans-serif;
+  font-size: 0.83rem;
+}
+
+.registro-password-panel li.is-valid {
+  color: #198754;
+}
+
+.registro-rule-icon {
+  width: 19px;
+  height: 19px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #cbd6da;
+  border-radius: 50%;
+  color: transparent;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.registro-password-panel li.is-valid .registro-rule-icon {
+  border-color: #198754;
+  background-color: #198754;
+  color: #fff;
+}
+
+.registro-form-header h2 {
+  color: var(--color-panel-text);
+  font-family: Poppins, sans-serif;
+  font-size: clamp(1.3rem, 2vw, 1.55rem);
+  font-weight: 700;
+}
+
+.registro-form-header p,
+.registro-login {
+  color: var(--color-muted-text);
+  font-family: Poppins, sans-serif;
+  font-size: 0.86rem;
+}
+
+.registro-endereco {
+  border-color: #edf1f3 !important;
+  background: transparent;
+}
+
+.registro-feedback {
+  font-family: Poppins, sans-serif;
+  font-size: 0.84rem;
+}
+
+.registro-login-action {
+  color: var(--color-accent);
+  font-size: inherit;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.registro-login-action:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
+@media (max-width: 991.98px) {
+  .registro-intro {
+    border-right: 0;
+    border-bottom: 1px solid var(--color-brand-border);
+  }
+}

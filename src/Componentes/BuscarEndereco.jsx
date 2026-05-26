@@ -1,124 +1,213 @@
-import React, { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Input from "./Input/Input";
+import { buscarEnderecoPorCep } from "../Servicos/viaCepApi";
 import "./CSS/BuscarEndereco.css";
 
-function BuscarEndereco() { 
-    // Api Cep - Definindo inputs
-    const [cep, setCep] = useState("");
-    const [numero, setNumero] = useState("");
-    const [complemento, setComplemento] = useState("");
-    const [rua, setRua] = useState("");
-    const [bairro, setBairro] = useState("");
-    const [uf, setUf] = useState("");
-    const [cidade, setCidade] = useState("");
+const emptyAddress = {
+  codigo_postal: "",
+  numero: "",
+  complemento: "",
+  rua: "",
+  bairro: "",
+  uf: "",
+  cidade: "",
+};
 
-    // Busca o cep ao chegar a 8 digitos
-    const handleCepChange = async (e) => {
-        const valorCep = e.target.value.replace(/\D/g, ""); // Remove hifens ou letras se o usuário digitar
-        setCep(valorCep);
+function BuscarEndereco({
+  value,
+  onChange,
+  required = false,
+  showExtraFields = true,
+  title,
+  className = "",
+  idPrefix = "endereco",
+}) {
+  const [internalValue, setInternalValue] = useState(emptyAddress);
+  const [status, setStatus] = useState(null);
+  const activeCep = useRef("");
+  const address = value || internalValue;
+  const currentAddress = useRef(address);
 
-        if (valorCep.length === 8) {
-            try {
-                const resposta = await fetch(`https://viacep.com.br/ws/${valorCep}/json/`);
-                const dados = await resposta.json();
+  useEffect(() => {
+    currentAddress.current = address;
 
-                if (!dados.erro) {
-                    // Preenche os estados com as informações retornadas da API
-                    setRua(dados.logradouro);
-                    setBairro(dados.bairro);
-                    setUf(dados.uf);
-                    setCidade(dados.localidade);
-                } else {
-                    alert("CEP não encontrado!");
-                    limparCamposEndereco();
-                }
-            } catch (error) {
-                console.error("Erro ao buscar o CEP:", error);
-            }
-        }
+    if (!address.codigo_postal) {
+      activeCep.current = "";
+    }
+  }, [address]);
+
+  function updateAddress(changes) {
+    const updatedAddress = {
+      ...currentAddress.current,
+      ...changes,
     };
 
-    const limparCamposEndereco = () => {
-        setRua("");
-        setBairro("");
-        setUf("");
-        setCidade("");
-    };
+    currentAddress.current = updatedAddress;
 
-    return ( 
-        <>
-            <div className="evento-inputs-container" style={{backgroundColor: "aliceblue"}}>
-                <div className="evento-inputs-row">
-                    <p className="evento-input-label">CEP: </p>
-                    <input
-                        className="form-control evento-input-cep"
-                        type="text"
-                        maxLength="9" // Permite espaço para o formato padrão
-                        placeholder="12345-678"
-                        value={cep}
-                        onChange={handleCepChange} // Gatilho de monitoramento
-                    />
-                    
-                    <p className="evento-input-label">Número: </p>
-                    <input
-                        className="form-control evento-input-numero"
-                        type="text"
-                        placeholder="123"
-                        value={numero}
-                        onChange={(e) => setNumero(e.target.value)}
-                    />
+    if (value === undefined) {
+      setInternalValue(updatedAddress);
+    }
 
-                    <p className="evento-input-label">Complemento: </p>
-                    <input
-                        className="form-control evento-input-complemento"
-                        type="text"
-                        placeholder="Apt 101"
-                        value={complemento}
-                        onChange={(e) => setComplemento(e.target.value)}
-                    />
-                </div>
+    onChange?.(updatedAddress);
+  }
 
-                <div className="evento-inputs-row">
-                    <p className="evento-input-label">Rua: </p>
-                    <input
-                        className="form-control evento-input-rua"
-                        type="text"
-                        placeholder="Rua Exemplo"
-                        value={rua} 
-                        readOnly 
-                    />
+  function clearLocatedFields(cep = address.codigo_postal) {
+    updateAddress({
+      codigo_postal: cep,
+      rua: "",
+      bairro: "",
+      uf: "",
+      cidade: "",
+    });
+  }
 
-                    <p className="evento-input-label">Bairro: </p>
-                    <input
-                        className="form-control evento-input-bairro"
-                        type="text"
-                        placeholder="Bairro Exemplo"
-                        value={bairro} 
-                        readOnly 
-                    />
-                </div>
+  async function handleCepChange(event) {
+    const cep = event.target.value.replace(/\D/g, "").slice(0, 8);
 
-                <div className="evento-inputs-row">
-                    <p className="evento-input-label">UF: </p>
-                    <input
-                        className="form-control evento-input-uf"
-                        type="text"
-                        placeholder="SP"
-                        value={uf} 
-                        readOnly 
-                    />
+    activeCep.current = cep;
+    setStatus(null);
+    updateAddress({ codigo_postal: cep });
 
-                    <p className="evento-input-label">Cidade: </p>
-                    <input
-                        className="form-control evento-input-cidade"
-                        type="text"
-                        placeholder="Cidade Exemplo"
-                        value={cidade} 
-                        readOnly 
-                    />
-                </div>
-            </div>
-        </>
-    );
+    if (cep.length !== 8) {
+      clearLocatedFields(cep);
+      return;
+    }
+
+    setStatus({ type: "loading", message: "Buscando endereço..." });
+
+    try {
+      const locatedAddress = await buscarEnderecoPorCep(cep);
+
+      if (activeCep.current !== cep) {
+        return;
+      }
+
+      if (locatedAddress.erro) {
+        clearLocatedFields(cep);
+        setStatus({ type: "error", message: "CEP não encontrado." });
+        return;
+      }
+
+      updateAddress({
+        codigo_postal: cep,
+        rua: locatedAddress.logradouro || "",
+        bairro: locatedAddress.bairro || "",
+        uf: locatedAddress.uf || "",
+        cidade: locatedAddress.localidade || "",
+      });
+      setStatus({ type: "success", message: "Endereço localizado." });
+    } catch {
+      if (activeCep.current === cep) {
+        setStatus({ type: "error", message: "Não foi possível consultar o CEP." });
+      }
+    }
+  }
+
+  function handleFieldChange(event) {
+    const { name, value: fieldValue } = event.target;
+
+    updateAddress({
+      [name]: name === "uf" ? fieldValue.toUpperCase() : fieldValue,
+    });
+  }
+
+  return (
+    <section className={`endereco-fields rounded-3 p-3 ${className}`.trim()}>
+      {title && <h3 className="endereco-fields-title mb-3">{title}</h3>}
+
+      <div className="row g-3">
+        <Input
+          id={`${idPrefix}-cep`}
+          name="codigo_postal"
+          label="CEP"
+          placeholder="00000-000"
+          autoComplete="postal-code"
+          inputMode="numeric"
+          maxLength={8}
+          required={required}
+          value={address.codigo_postal}
+          onChange={handleCepChange}
+          containerClassName="col-sm-4 col-lg-3 mb-0"
+        />
+
+        {showExtraFields && (
+          <>
+            <Input
+              id={`${idPrefix}-numero`}
+              name="numero"
+              label="Número"
+              placeholder="123"
+              inputMode="numeric"
+              value={address.numero}
+              onChange={handleFieldChange}
+              containerClassName="col-sm-4 col-lg-3 mb-0"
+            />
+            <Input
+              id={`${idPrefix}-complemento`}
+              name="complemento"
+              label="Complemento"
+              placeholder="Apto. 101"
+              value={address.complemento}
+              onChange={handleFieldChange}
+              containerClassName="col-sm-4 col-lg-6 mb-0"
+            />
+          </>
+        )}
+
+        <Input
+          id={`${idPrefix}-rua`}
+          name="rua"
+          label="Rua"
+          placeholder="Digite sua rua"
+          autoComplete="address-line1"
+          required={required}
+          value={address.rua}
+          onChange={handleFieldChange}
+          containerClassName="col-md-8 mb-0"
+        />
+        <Input
+          id={`${idPrefix}-bairro`}
+          name="bairro"
+          label="Bairro"
+          placeholder="Digite seu bairro"
+          required={required}
+          value={address.bairro}
+          onChange={handleFieldChange}
+          containerClassName="col-md-4 mb-0"
+        />
+        <Input
+          id={`${idPrefix}-cidade`}
+          name="cidade"
+          label="Cidade"
+          placeholder="Digite sua cidade"
+          autoComplete="address-level2"
+          required={required}
+          value={address.cidade}
+          onChange={handleFieldChange}
+          containerClassName="col-md-8 mb-0"
+        />
+        <Input
+          id={`${idPrefix}-uf`}
+          name="uf"
+          label="UF"
+          placeholder="SP"
+          autoComplete="address-level1"
+          maxLength={2}
+          minLength={2}
+          required={required}
+          value={address.uf}
+          onChange={handleFieldChange}
+          containerClassName="col-md-4 mb-0"
+        />
+      </div>
+
+      {status && (
+        <p className={`endereco-status mt-3 mb-0 is-${status.type}`} role={status.type === "error" ? "alert" : "status"}>
+          {status.message}
+        </p>
+      )}
+    </section>
+  );
 }
 
 export default BuscarEndereco;

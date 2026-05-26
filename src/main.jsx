@@ -10,6 +10,7 @@ import Evento from './Telas/Eventos/Evento'
 import Perfil from './Telas/Perfil/Perfil'
 import Calendario from './Telas/Calendario/Calendario'
 import CriarEvento from './Telas/CriarEvento/CriarEvento'
+import CadastroInstituicao from './Telas/CadastroInstituicao/CadastroInstituicao'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode> 
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/registro" element={<Registro />} />
+        <Route path="/cadastro-instituicao" element={<CadastroInstituicao />} />
         <Route path="/eventos" element={<Evento />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/calendario" element={<Calendario />} /> 
