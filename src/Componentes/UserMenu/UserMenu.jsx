@@ -4,19 +4,29 @@ import {
   CalendarHeart,
   ChevronDown,
   LogIn,
-  Settings2,
+  LogOut,
   UserRound,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import useAuth from "../../Contextos/useAuth";
 import "./UserMenu.css";
 
 const protectedOptions = [
-  { label: "Meu perfil", Icon: UserRound },
-  { label: "Minhas atividades", Icon: CalendarHeart },
-  { label: "Preferências", Icon: Settings2 },
+  { label: "Meu perfil", Icon: UserRound, to: "/perfil" },
+  { label: "Minhas atividades", Icon: CalendarHeart, to: "/calendario" },
+  { label: "Criar evento", Icon: Building2, to: "/criar-evento" },
 ];
 
-function ProtectedOption({ label, Icon }) {
+function ProtectedOption({ authenticated, label, Icon, to }) {
+  if (authenticated) {
+    return (
+      <Link className="dropdown-item d-flex align-items-center gap-2 rounded-2 py-2 cheer-user-menu-item" to={to}>
+        {createElement(Icon, { size: 18, "aria-hidden": "true" })}
+        {label}
+      </Link>
+    );
+  }
+
   return (
     <button
       className="dropdown-item d-flex align-items-center gap-2 rounded-2 py-2 cheer-user-menu-item"
@@ -31,6 +41,8 @@ function ProtectedOption({ label, Icon }) {
 }
 
 function UserMenu() {
+  const { authenticated, logout, status } = useAuth();
+
   return (
     <div className="dropdown ms-lg-3 cheer-user-menu">
       <button
@@ -44,7 +56,7 @@ function UserMenu() {
         <span className="badge rounded-circle d-inline-flex align-items-center justify-content-center cheer-user-avatar">
           <UserRound size={21} aria-hidden="true" />
         </span>
-        <span className="cheer-user-label">Conta</span>
+        <span className="cheer-user-label">{authenticated ? "Minha conta" : "Conta"}</span>
         <ChevronDown size={16} aria-hidden="true" />
       </button>
 
@@ -54,23 +66,35 @@ function UserMenu() {
       >
         <div className="px-2 pt-1 pb-2 cheer-user-menu-header">
           <p className="mb-1">Área do usuário</p>
-          <small>Entre para acompanhar suas ações.</small>
+          <small>{authenticated ? "Sessão conectada à Cheer." : "Entre para acompanhar suas ações."}</small>
         </div>
 
-        <button
-          className="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-2 cheer-btn-primary cheer-user-login"
-          type="button"
-          data-bs-toggle="modal"
-          data-bs-target="#LoginModal"
-        >
-          <LogIn size={18} aria-hidden="true" />
-          Entrar
-        </button>
+        {authenticated ? (
+          <button
+            className="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center gap-2 cheer-btn-secondary cheer-user-login"
+            type="button"
+            onClick={logout}
+          >
+            <LogOut size={18} aria-hidden="true" />
+            Sair
+          </button>
+        ) : (
+          <button
+            className="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-2 cheer-btn-primary cheer-user-login"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#LoginModal"
+            disabled={status === "loading"}
+          >
+            <LogIn size={18} aria-hidden="true" />
+            {status === "loading" ? "Verificando..." : "Entrar"}
+          </button>
+        )}
 
         <hr className="dropdown-divider my-2" />
 
         {protectedOptions.map((option) => (
-          <ProtectedOption key={option.label} {...option} />
+          <ProtectedOption key={option.label} authenticated={authenticated} {...option} />
         ))}
 
         <hr className="dropdown-divider my-2" />

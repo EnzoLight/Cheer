@@ -6,6 +6,7 @@ const API_BASE_URL = (
 
 const api = ky.create({
   baseUrl: `${API_BASE_URL}/`,
+  credentials: "include",
   headers: {
     Accept: "application/json",
   },
@@ -22,17 +23,24 @@ class ApiError extends Error {
   }
 }
 
-async function registerAccount(endpoint, payload) {
+export function resolveApiUrl(path) {
+  return new URL(path, `${API_BASE_URL}/`).href;
+}
+
+export const AUTH_ENDPOINTS = {
+  login: resolveApiUrl("api/auth/login"),
+  logout: resolveApiUrl("api/auth/logout"),
+};
+
+async function requestJson(request, fallbackMessage) {
   try {
-    return await api
-      .post(endpoint, { json: payload })
-      .json();
+    return await request.json();
   } catch (error) {
     if (isHTTPError(error)) {
       const response = error.data || {};
 
       throw new ApiError(
-        response.message || "Nao foi possivel concluir a solicitacao.",
+        response.message || fallbackMessage,
         error.response.status,
         response.fields || [],
       );
@@ -42,8 +50,22 @@ async function registerAccount(endpoint, payload) {
       throw new ApiError("A solicitacao demorou demais. Tente novamente.", 0);
     }
 
-    throw new ApiError("Nao foi possivel conectar ao servidor.", 0);
+    throw new ApiError(fallbackMessage, 0);
   }
+}
+
+async function registerAccount(endpoint, payload) {
+  return requestJson(
+    api.post(endpoint, { json: payload }),
+    "Nao foi possivel concluir a solicitacao.",
+  );
+}
+
+export function getAuthConfig() {
+  return requestJson(
+    api.get("api/auth/config"),
+    "Nao foi possivel verificar sua sessao.",
+  );
 }
 
 export function registerVoluntario(payload) {

@@ -1,13 +1,11 @@
-import { ArrowRight, Building2, Lock, Mail, ShieldCheck, UserRound } from "lucide-react";
+import { ArrowRight, Building2, ShieldCheck, UserRound } from "lucide-react";
 import { Link } from "react-router-dom";
-import Input from "../Input/Input";
+import useAuth from "../../Contextos/useAuth";
 import Logo from "../Logo/Logo";
 import "./ModalLogin.css";
 
 function ModalLogin() {
-  function preventSubmit(event) {
-    event.preventDefault();
-  }
+  const { login } = useAuth();
 
   return (
     <div
@@ -37,7 +35,7 @@ function ModalLogin() {
             <header className="mb-4 login-modal-header">
               <p className="login-modal-kicker">BEM-VINDO DE VOLTA</p>
               <h2 id="loginModalLabel">Entrar na Cheer</h2>
-              <p>Informe seus dados para continuar.</p>
+              <p>Continue pelo acesso seguro para autenticar sua conta.</p>
               <button
                 type="button"
                 className="btn-close position-absolute top-0 end-0 m-4 login-modal-close"
@@ -46,38 +44,23 @@ function ModalLogin() {
               />
             </header>
 
-            <form className="login-modal-form" onSubmit={preventSubmit}>
-              <Input
-                id="login-email"
-                name="email"
-                type="email"
-                label="Email"
-                placeholder="seu@email.com"
-                autoComplete="email"
-                Icon={Mail}
-                iconPosition="left"
-              />
-              <Input
-                id="login-password"
-                name="password"
-                type="password"
-                label="Senha"
-                placeholder="Digite sua senha"
-                autoComplete="current-password"
-                Icon={Lock}
-                iconPosition="left"
-              />
-
+            <div className="login-modal-form">
+              <div className="rounded-3 p-3 mb-3 d-flex align-items-start gap-2 login-modal-provider">
+                <ShieldCheck size={20} aria-hidden="true" />
+                <p className="mb-0">
+                  Sua senha é informada apenas no provedor de autenticação da Cheer.
+                </p>
+              </div>
               <button
                 id="btn_login"
                 className="btn btn-primary cheer-btn-primary w-100 py-3 d-flex align-items-center justify-content-center gap-2 fw-semibold mt-2"
                 type="button"
-                data-bs-dismiss="modal"
+                onClick={login}
               >
-                Entrar
+                Continuar para login
                 <ArrowRight size={18} aria-hidden="true" />
               </button>
-            </form>
+            </div>
 
             <footer className="border-top pt-3 mt-4 login-modal-register">
               <p className="text-center mb-3">Ainda não tem cadastro?</p>

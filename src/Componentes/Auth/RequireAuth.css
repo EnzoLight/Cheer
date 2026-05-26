@@ -1,0 +1,34 @@
+.auth-gate-page,
+.auth-gate-main {
+  min-height: calc(100vh - 70px);
+}
+
+.auth-gate-main {
+  background: var(--background-auth-page);
+}
+
+.auth-gate-card {
+  width: min(460px, 100%);
+  border-radius: var(--card-radius);
+  background-color: var(--color-surface);
+  box-shadow: var(--card-shadow);
+}
+
+.auth-gate-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.auth-gate-card h1 {
+  color: var(--color-panel-text);
+  font-family: Poppins, sans-serif;
+  font-weight: 700;
+}
+
+.auth-gate-copy {
+  color: var(--color-muted-text);
+  font-family: Poppins, sans-serif;
+}

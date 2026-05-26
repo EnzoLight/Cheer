@@ -4,9 +4,14 @@ import { HashLink } from "react-router-hash-link";
 import Logo from "./Logo/Logo";
 import Input from "./Input/Input";
 import UserMenu from "./UserMenu/UserMenu";
+import useAuth from "../Contextos/useAuth";
 import "./CSS/navbar.css";
 
-function LoginRequiredItem({ children }) {
+function SessionItem({ authenticated, children, to }) {
+  if (authenticated) {
+    return <Link className="dropdown-item" to={to}>{children}</Link>;
+  }
+
   return (
     <button
       className="dropdown-item"
@@ -20,6 +25,8 @@ function LoginRequiredItem({ children }) {
 }
 
 function UserNavbar() {
+  const { authenticated } = useAuth();
+
   function preventSearchSubmit(event) {
     event.preventDefault();
   }
@@ -56,8 +63,7 @@ function UserNavbar() {
               </button>
               <ul className="dropdown-menu">
                 <li><Link className="dropdown-item" to="/eventos">Buscar eventos</Link></li>
-                <li><LoginRequiredItem>Eventos próximos</LoginRequiredItem></li>
-                <li><LoginRequiredItem>Eventos realizados</LoginRequiredItem></li>
+                <li><SessionItem authenticated={authenticated} to="/calendario">Minha agenda</SessionItem></li>
               </ul>
             </li>
 
@@ -71,8 +77,8 @@ function UserNavbar() {
                 Instituições
               </button>
               <ul className="dropdown-menu">
-                <li><LoginRequiredItem>Buscar instituições</LoginRequiredItem></li>
-                <li><LoginRequiredItem>Instituições seguidas</LoginRequiredItem></li>
+                <li><Link className="dropdown-item" to="/cadastro-instituicao">Cadastrar instituição</Link></li>
+                <li><SessionItem authenticated={authenticated} to="/criar-evento">Criar evento</SessionItem></li>
               </ul>
             </li>
 
