@@ -39,6 +39,70 @@
   line-height: 1.6;
 }
 
+.perfil-state {
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+  min-height: 220px;
+  text-align: center;
+}
+
+.perfil-avatar,
+.perfil-info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  background: var(--color-surface);
+  border: 1px solid var(--color-brand-border);
+}
+
+.perfil-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+}
+
+.perfil-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.perfil-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid var(--color-brand-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+}
+
+.perfil-info-icon {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+.perfil-info-label {
+  display: block;
+  color: var(--color-muted-text);
+  font-family: Poppins, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.perfil-info-item strong {
+  display: block;
+  color: var(--color-panel-text);
+  font-family: Poppins, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
 .perfil-search-button {
   min-height: 48px;
 }
@@ -51,4 +115,10 @@
 .perfil-cover {
   height: 300px;
   object-fit: cover;
+}
+
+@media (max-width: 575.98px) {
+  .perfil-info-grid {
+    grid-template-columns: 1fr;
+  }
 }

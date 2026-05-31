@@ -44,6 +44,20 @@
   max-height: calc(100vh - 252px);
 }
 
+.eventos-state {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  padding: 1.5rem;
+  border: 1px solid #edf1f3;
+  border-radius: 14px;
+  color: var(--color-muted-text);
+  background: #fbfcfd;
+  font-family: Poppins, sans-serif;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
 .eventos-lista::-webkit-scrollbar {
   width: 6px;
 }
@@ -61,6 +75,11 @@
 .eventos-address {
   border-color: #edf1f3 !important;
   background: #fbfcfd;
+}
+
+.eventos-feedback {
+  font-family: Poppins, sans-serif;
+  font-size: 0.88rem;
 }
 
 @media (max-width: 991.98px) {

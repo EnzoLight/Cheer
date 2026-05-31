@@ -4,15 +4,40 @@ import UserNavbar from "../UserNavbar";
 import ModalLogin from "../Modais/ModalLogin";
 import "./RequireAuth.css";
 
-function RequireAuth({ children }) {
-  const { authenticated, error, login, refreshSession, status } = useAuth();
+const accountTypeLabels = {
+  instituicao: "instituições",
+  voluntario: "voluntários",
+};
 
-  if (authenticated) {
+function RequireAuth({ children, requiredAccountType }) {
+  const {
+    accountType,
+    authenticated,
+    error,
+    login,
+    profileError,
+    profileStatus,
+    refreshProfile,
+    refreshSession,
+    status,
+  } = useAuth();
+
+  const isLoading = status === "loading" || (authenticated && profileStatus === "loading");
+  const hasError = status === "error" || (authenticated && profileStatus === "error");
+  const hasRequiredAccountType = !requiredAccountType || accountType === requiredAccountType;
+
+  if (authenticated && !isLoading && !hasError && hasRequiredAccountType) {
     return children;
   }
 
-  const isLoading = status === "loading";
-  const hasError = status === "error";
+  function handleRetry() {
+    if (status === "error") {
+      refreshSession();
+      return;
+    }
+
+    refreshProfile();
+  }
 
   return (
     <>
@@ -37,12 +62,19 @@ function RequireAuth({ children }) {
                 <>
                   <h1 className="h4 mb-2">Não foi possível validar sua sessão</h1>
                   <p className="mb-4 auth-gate-copy">
-                    {error?.message || "Tente novamente para acessar esta área."}
+                    {error?.message || profileError?.message || "Tente novamente para acessar esta área."}
                   </p>
-                  <button className="btn btn-outline-primary cheer-btn-secondary py-3 d-flex align-items-center justify-content-center gap-2" type="button" onClick={refreshSession}>
+                  <button className="btn btn-outline-primary cheer-btn-secondary py-3 d-flex align-items-center justify-content-center gap-2" type="button" onClick={handleRetry}>
                     <RefreshCw size={18} aria-hidden="true" />
                     Tentar novamente
                   </button>
+                </>
+              ) : authenticated && !hasRequiredAccountType ? (
+                <>
+                  <h1 className="h4 mb-2">Acesso restrito</h1>
+                  <p className="mb-0 auth-gate-copy">
+                    Esta área está disponível apenas para {accountTypeLabels[requiredAccountType] || "contas autorizadas"}.
+                  </p>
                 </>
               ) : (
                 <>

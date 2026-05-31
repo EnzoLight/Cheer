@@ -37,7 +37,13 @@ async function requestJson(request, fallbackMessage) {
     return await request.json();
   } catch (error) {
     if (isHTTPError(error)) {
-      const response = error.data || {};
+      let response = {};
+
+      try {
+        response = await error.response.json();
+      } catch {
+        response = {};
+      }
 
       throw new ApiError(
         response.message || fallbackMessage,
@@ -68,10 +74,45 @@ export function getAuthConfig() {
   );
 }
 
+export function getProfile() {
+  return requestJson(
+    api.get("api/me"),
+    "Nao foi possivel carregar seu perfil.",
+  );
+}
+
 export function registerVoluntario(payload) {
   return registerAccount("api/auth/register-voluntario", payload);
 }
 
 export function registerInstituicao(payload) {
   return registerAccount("api/auth/register-instituicao", payload);
+}
+
+export function listEventos() {
+  return requestJson(
+    api.get("api/eventos"),
+    "Nao foi possivel carregar os eventos.",
+  );
+}
+
+export function createEvento(payload) {
+  return requestJson(
+    api.post("api/eventos", { json: payload }),
+    "Nao foi possivel criar o evento.",
+  );
+}
+
+export function listMeusEventos() {
+  return requestJson(
+    api.get("api/meus-eventos"),
+    "Nao foi possivel carregar os eventos da instituicao.",
+  );
+}
+
+export function listMinhasInscricoes() {
+  return requestJson(
+    api.get("api/minhas-inscricoes"),
+    "Nao foi possivel carregar suas inscricoes.",
+  );
 }

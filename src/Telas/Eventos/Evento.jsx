@@ -1,18 +1,41 @@
+import { useCallback, useEffect, useState } from "react";
 import "./Evento.css";
 import { useJsApiLoader } from "@react-google-maps/api";
 import UserNavbar from "../../Componentes/UserNavbar";
 import BuscarEndereco from "../../Componentes/BuscarEndereco";
 import ModalLogin from "../../Componentes/Modais/ModalLogin";
 import Mapa from "../../Componentes/Mapa";
-import { eventosDemonstracao } from "../../Componentes/Eventos/eventosDemonstracao";
 import { EventosPage, EventosPanel } from "../../Componentes/Eventos/EventosLayout";
 import ListaEventos from "../../Componentes/Eventos/ListaEventos";
+import { listEventos } from "../../Servicos/cheerApi";
 
 function Evento() {
+  const [eventos, setEventos] = useState([]);
+  const [eventosStatus, setEventosStatus] = useState("loading");
+  const [eventosError, setEventosError] = useState(null);
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   });
+
+  const loadEventos = useCallback(async () => {
+    setEventosStatus("loading");
+    setEventosError(null);
+
+    try {
+      const response = await listEventos();
+      setEventos(response.data || []);
+      setEventosStatus("loaded");
+    } catch (error) {
+      setEventos([]);
+      setEventosError(error.message || "Não foi possível carregar os eventos.");
+      setEventosStatus("error");
+    }
+  }, []);
+
+  useEffect(() => {
+    void Promise.resolve().then(loadEventos);
+  }, [loadEventos]);
 
   return (
     <>
@@ -40,9 +63,13 @@ function Evento() {
         </EventosPanel>
 
         <ListaEventos
-          eventos={eventosDemonstracao}
+          eventos={eventos}
           title="Eventos disponíveis"
           description="Oportunidades abertas para voluntários."
+          isLoading={eventosStatus === "loading"}
+          error={eventosStatus === "error" ? eventosError : null}
+          emptyMessage="Nenhum evento disponível no momento."
+          onRetry={loadEventos}
         />
       </EventosPage>
 

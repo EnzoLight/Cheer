@@ -25,7 +25,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/eventos" element={<Evento />} />
           <Route path="/perfil" element={<RequireAuth><Perfil /></RequireAuth>} />
           <Route path="/calendario" element={<RequireAuth><Calendario /></RequireAuth>} />
-          <Route path="/criar-evento" element={<RequireAuth><CriarEvento /></RequireAuth>} />
+          <Route path="/criar-evento" element={<RequireAuth requiredAccountType="instituicao"><CriarEvento /></RequireAuth>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

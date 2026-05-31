@@ -14,7 +14,6 @@ import "./UserMenu.css";
 const protectedOptions = [
   { label: "Meu perfil", Icon: UserRound, to: "/perfil" },
   { label: "Minhas atividades", Icon: CalendarHeart, to: "/calendario" },
-  { label: "Criar evento", Icon: Building2, to: "/criar-evento" },
 ];
 
 function ProtectedOption({ authenticated, label, Icon, to }) {
@@ -41,7 +40,7 @@ function ProtectedOption({ authenticated, label, Icon, to }) {
 }
 
 function UserMenu() {
-  const { authenticated, logout, status } = useAuth();
+  const { authenticated, isInstituicao, logout, status } = useAuth();
 
   return (
     <div className="dropdown ms-lg-3 cheer-user-menu">
@@ -96,6 +95,9 @@ function UserMenu() {
         {protectedOptions.map((option) => (
           <ProtectedOption key={option.label} authenticated={authenticated} {...option} />
         ))}
+        {isInstituicao && (
+          <ProtectedOption authenticated={authenticated} label="Criar evento" Icon={Building2} to="/criar-evento" />
+        )}
 
         <hr className="dropdown-divider my-2" />
 

@@ -25,7 +25,7 @@ function SessionItem({ authenticated, children, to }) {
 }
 
 function UserNavbar() {
-  const { authenticated } = useAuth();
+  const { authenticated, isInstituicao } = useAuth();
 
   function preventSearchSubmit(event) {
     event.preventDefault();
@@ -78,7 +78,9 @@ function UserNavbar() {
               </button>
               <ul className="dropdown-menu">
                 <li><Link className="dropdown-item" to="/cadastro-instituicao">Cadastrar instituição</Link></li>
-                <li><SessionItem authenticated={authenticated} to="/criar-evento">Criar evento</SessionItem></li>
+                {isInstituicao && (
+                  <li><Link className="dropdown-item" to="/criar-evento">Criar evento</Link></li>
+                )}
               </ul>
             </li>
 
