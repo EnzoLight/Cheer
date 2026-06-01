@@ -10,6 +10,7 @@ import Evento from './Telas/Eventos/Evento'
 import Perfil from './Telas/Perfil/Perfil'
 import Calendario from './Telas/Calendario/Calendario'
 import CriarEvento from './Telas/CriarEvento/CriarEvento'
+import DashboardInstituicao from './Telas/DashboardInstituicao/DashboardInstituicao'
 import CadastroInstituicao from './Telas/CadastroInstituicao/CadastroInstituicao'
 import AuthProvider from './Contextos/AuthProvider'
 import RequireAuth from './Componentes/Auth/RequireAuth'
@@ -27,6 +28,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/perfil" element={<RequireAuth><Perfil /></RequireAuth>} />
           <Route path="/calendario" element={<RequireAuth><Calendario /></RequireAuth>} />
           <Route path="/criar-evento" element={<RequireAuth requiredAccountType="instituicao"><CriarEvento /></RequireAuth>} />
+          <Route path="/dashboard" element={<RequireAuth requiredAccountType="instituicao"><DashboardInstituicao /></RequireAuth>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

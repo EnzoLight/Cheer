@@ -1,0 +1,144 @@
+.dashboard-page,
+.dashboard-main {
+  min-height: calc(100vh - 70px);
+}
+
+.dashboard-main {
+  background: var(--background-auth-page);
+}
+
+.dashboard-header {
+  color: var(--color-muted-text);
+  font-family: Poppins, sans-serif;
+}
+
+.dashboard-header h1,
+.dashboard-panel h2 {
+  color: var(--color-panel-text);
+  font-family: Poppins, sans-serif;
+  font-weight: 700;
+}
+
+.dashboard-kicker {
+  color: var(--color-accent);
+  font-family: Poppins, sans-serif;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.dashboard-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.dashboard-kpi,
+.dashboard-panel,
+.dashboard-state {
+  border: 1px solid var(--color-brand-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  background: #fff;
+}
+
+.dashboard-kpi {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-height: 112px;
+  padding: 1rem;
+  font-family: Poppins, sans-serif;
+}
+
+.dashboard-kpi-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.dashboard-kpi p {
+  margin: 0 0 0.25rem;
+  color: var(--color-muted-text);
+  font-size: 0.82rem;
+}
+
+.dashboard-kpi strong {
+  color: var(--color-panel-text);
+  font-size: 1.65rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.dashboard-panel {
+  padding: 1rem;
+}
+
+.dashboard-panel h2 {
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+.dashboard-chart {
+  position: relative;
+  min-height: 300px;
+}
+
+.dashboard-empty,
+.dashboard-state {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  padding: 1.5rem;
+  color: var(--color-muted-text);
+  font-family: Poppins, sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.dashboard-table {
+  width: 100% !important;
+  font-family: Poppins, sans-serif;
+}
+
+.dashboard-panel .dt-container {
+  color: var(--color-panel-text);
+  font-family: Poppins, sans-serif;
+  font-size: 0.86rem;
+}
+
+.dashboard-panel .dt-search input,
+.dashboard-panel .dt-length select {
+  border: 1px solid var(--color-brand-border);
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+}
+
+.dashboard-panel table.dataTable thead th {
+  color: var(--color-panel-text);
+  font-weight: 700;
+}
+
+@media (max-width: 991.98px) {
+  .dashboard-kpis,
+  .dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .dashboard-kpis,
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -3,6 +3,7 @@ import {
   Building2,
   CalendarHeart,
   ChevronDown,
+  LayoutDashboard,
   LogIn,
   LogOut,
   UserRound,
@@ -95,7 +96,10 @@ function UserMenu() {
           <ProtectedOption key={option.label} authenticated={authenticated} {...option} />
         ))}
         {isInstituicao && (
-          <ProtectedOption authenticated={authenticated} label="Criar evento" Icon={Building2} to="/criar-evento" />
+          <>
+            <ProtectedOption authenticated={authenticated} label="Dashboard" Icon={LayoutDashboard} to="/dashboard" />
+            <ProtectedOption authenticated={authenticated} label="Criar evento" Icon={Building2} to="/criar-evento" />
+          </>
         )}
 
         {!authenticated && (

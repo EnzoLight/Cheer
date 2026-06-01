@@ -116,3 +116,10 @@ export function listMinhasInscricoes() {
     "Nao foi possivel carregar suas inscricoes.",
   );
 }
+
+export function getDashboardInstituicao() {
+  return requestJson(
+    api.get("api/dashboard/instituicao"),
+    "Nao foi possivel carregar o dashboard da instituicao.",
+  );
+}

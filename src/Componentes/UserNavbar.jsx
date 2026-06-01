@@ -83,7 +83,10 @@ function UserNavbar() {
                     <li><Link className="dropdown-item" to="/cadastro-instituicao">Cadastrar instituição</Link></li>
                   )}
                   {isInstituicao && (
-                    <li><Link className="dropdown-item" to="/criar-evento">Criar evento</Link></li>
+                    <>
+                      <li><Link className="dropdown-item" to="/dashboard">Dashboard</Link></li>
+                      <li><Link className="dropdown-item" to="/criar-evento">Criar evento</Link></li>
+                    </>
                   )}
                 </ul>
               </li>
