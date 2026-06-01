@@ -2,6 +2,7 @@ import { useState } from "react";
 import BuscarEndereco from "../BuscarEndereco";
 import Input, { Select, Textarea } from "../Input/Input";
 import { createEvento } from "../../Servicos/cheerApi";
+import useAuth from "../../Contextos/useAuth";
 
 const emptyAddress = {
   codigo_postal: "",
@@ -50,11 +51,46 @@ function toApiDateTime(date, time) {
   return `${date}T${time}:00${sign}${offsetHours}:${offsetMinutes}`;
 }
 
+function todayInputValue() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+function hasCompleteAddress(address) {
+  return Boolean(
+    address?.rua
+    && address?.bairro
+    && address?.cidade
+    && address?.uf
+    && address?.codigo_postal
+  );
+}
+
+function normalizeAddress(address) {
+  return {
+    codigo_postal: address.codigo_postal || "",
+    numero: "",
+    complemento: "",
+    rua: address.rua || "",
+    bairro: address.bairro || "",
+    uf: address.uf || "",
+    cidade: address.cidade || "",
+  };
+}
+
 function FormularioEvento({ onCreated }) {
+  const { profile } = useAuth();
   const [formData, setFormData] = useState(initialFormData);
   const [feedback, setFeedback] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [addressVersion, setAddressVersion] = useState(0);
+  const institutionAddress = profile?.endereco;
+  const canUseInstitutionAddress = hasCompleteAddress(institutionAddress);
+  const today = todayInputValue();
 
   function updateField(event) {
     const { name, value } = event.target;
@@ -72,6 +108,19 @@ function FormularioEvento({ onCreated }) {
     }));
   }
 
+  function useInstitutionAddress() {
+    if (!canUseInstitutionAddress) {
+      return;
+    }
+
+    setFormData((currentData) => ({
+      ...currentData,
+      endereco: normalizeAddress(institutionAddress),
+    }));
+    setAddressVersion((version) => version + 1);
+    setFeedback(null);
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
     setFeedback(null);
@@ -83,6 +132,14 @@ function FormularioEvento({ onCreated }) {
       setFeedback({
         type: "error",
         message: "Informe data e hora de início válidas.",
+      });
+      return;
+    }
+
+    if (new Date(dataHoraInicio) < new Date()) {
+      setFeedback({
+        type: "error",
+        message: "A data de início não pode ser anterior ao momento atual.",
       });
       return;
     }
@@ -193,11 +250,19 @@ function FormularioEvento({ onCreated }) {
           containerClassName="col-12 mb-0"
         />
 
-        <Input label="Data de início" name="data_inicio" type="date" required value={formData.data_inicio} onChange={updateField} containerClassName="col-sm-6 mb-0" />
+        <Input label="Data de início" name="data_inicio" type="date" required min={today} value={formData.data_inicio} onChange={updateField} containerClassName="col-sm-6 mb-0" />
         <Input label="Hora de início" name="hora_inicio" type="time" required value={formData.hora_inicio} onChange={updateField} containerClassName="col-sm-6 mb-0" />
 
-        <Input label="Data de fim" name="data_fim" type="date" value={formData.data_fim} onChange={updateField} containerClassName="col-sm-6 mb-0" />
+        <Input label="Data de fim" name="data_fim" type="date" min={formData.data_inicio || today} value={formData.data_fim} onChange={updateField} containerClassName="col-sm-6 mb-0" />
         <Input label="Hora de fim" name="hora_fim" type="time" value={formData.hora_fim} onChange={updateField} containerClassName="col-sm-6 mb-0" />
+
+        {canUseInstitutionAddress && (
+          <div className="col-12 mb-0">
+            <button className="btn btn-outline-primary cheer-btn-secondary" type="button" onClick={useInstitutionAddress}>
+              Usar endereço da instituição
+            </button>
+          </div>
+        )}
 
         <BuscarEndereco
           key={addressVersion}

@@ -18,7 +18,9 @@ function ActivityCard({ activity, isInstituicao }) {
             {isInstituicao ? `${activity.inscritos ?? 0} inscritos` : activity.status || "Inscrito"}
           </span>
         </div>
-        <p className="calendario-copy mb-2">{activity.instituicao}</p>
+        {!isInstituicao && activity.instituicao && (
+          <p className="calendario-copy mb-2">{activity.instituicao}</p>
+        )}
         <dl className="row g-2 mb-0 calendario-details">
           <dt className="col-sm-4">Data</dt>
           <dd className="col-sm-8">{activity.data || "Não informada"}</dd>
