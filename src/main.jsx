@@ -13,6 +13,7 @@ import CriarEvento from './Telas/CriarEvento/CriarEvento'
 import CadastroInstituicao from './Telas/CadastroInstituicao/CadastroInstituicao'
 import AuthProvider from './Contextos/AuthProvider'
 import RequireAuth from './Componentes/Auth/RequireAuth'
+import RequireGuest from './Componentes/Auth/RequireGuest'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode> 
@@ -20,8 +21,8 @@ createRoot(document.getElementById('root')).render(
       <AuthProvider>
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="/registro" element={<Registro />} />
-          <Route path="/cadastro-instituicao" element={<CadastroInstituicao />} />
+          <Route path="/registro" element={<RequireGuest><Registro /></RequireGuest>} />
+          <Route path="/cadastro-instituicao" element={<RequireGuest><CadastroInstituicao /></RequireGuest>} />
           <Route path="/eventos" element={<Evento />} />
           <Route path="/perfil" element={<RequireAuth><Perfil /></RequireAuth>} />
           <Route path="/calendario" element={<RequireAuth><Calendario /></RequireAuth>} />

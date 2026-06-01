@@ -11,11 +11,6 @@ import { Link } from "react-router-dom";
 import useAuth from "../../Contextos/useAuth";
 import "./UserMenu.css";
 
-const protectedOptions = [
-  { label: "Meu perfil", Icon: UserRound, to: "/perfil" },
-  { label: "Minhas atividades", Icon: CalendarHeart, to: "/calendario" },
-];
-
 function ProtectedOption({ authenticated, label, Icon, to }) {
   if (authenticated) {
     return (
@@ -41,6 +36,10 @@ function ProtectedOption({ authenticated, label, Icon, to }) {
 
 function UserMenu() {
   const { authenticated, isInstituicao, logout, status } = useAuth();
+  const protectedOptions = [
+    { label: "Meu perfil", Icon: UserRound, to: "/perfil" },
+    { label: isInstituicao ? "Meus eventos" : "Minhas atividades", Icon: CalendarHeart, to: "/calendario" },
+  ];
 
   return (
     <div className="dropdown ms-lg-3 cheer-user-menu">
@@ -99,16 +98,20 @@ function UserMenu() {
           <ProtectedOption authenticated={authenticated} label="Criar evento" Icon={Building2} to="/criar-evento" />
         )}
 
-        <hr className="dropdown-divider my-2" />
+        {!authenticated && (
+          <>
+            <hr className="dropdown-divider my-2" />
 
-        <Link className="dropdown-item d-flex align-items-center gap-2 rounded-2 py-2 cheer-user-menu-item" to="/registro">
-          <UserRound size={18} aria-hidden="true" />
-          Criar conta de voluntário
-        </Link>
-        <Link className="dropdown-item d-flex align-items-center gap-2 rounded-2 py-2 cheer-user-menu-item" to="/cadastro-instituicao">
-          <Building2 size={18} aria-hidden="true" />
-          Cadastrar instituição
-        </Link>
+            <Link className="dropdown-item d-flex align-items-center gap-2 rounded-2 py-2 cheer-user-menu-item" to="/registro">
+              <UserRound size={18} aria-hidden="true" />
+              Criar conta de voluntário
+            </Link>
+            <Link className="dropdown-item d-flex align-items-center gap-2 rounded-2 py-2 cheer-user-menu-item" to="/cadastro-instituicao">
+              <Building2 size={18} aria-hidden="true" />
+              Cadastrar instituição
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

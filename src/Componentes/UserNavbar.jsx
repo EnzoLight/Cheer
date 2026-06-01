@@ -26,6 +26,7 @@ function SessionItem({ authenticated, children, to }) {
 
 function UserNavbar() {
   const { authenticated, isInstituicao } = useAuth();
+  const agendaLabel = isInstituicao ? "Meus eventos" : "Minha agenda";
 
   function preventSearchSubmit(event) {
     event.preventDefault();
@@ -63,26 +64,30 @@ function UserNavbar() {
               </button>
               <ul className="dropdown-menu">
                 <li><Link className="dropdown-item" to="/eventos">Buscar eventos</Link></li>
-                <li><SessionItem authenticated={authenticated} to="/calendario">Minha agenda</SessionItem></li>
+                <li><SessionItem authenticated={authenticated} to="/calendario">{agendaLabel}</SessionItem></li>
               </ul>
             </li>
 
-            <li className="nav-item dropdown">
-              <button
-                className="nav-link dropdown-toggle nav-link-cheer"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Instituições
-              </button>
-              <ul className="dropdown-menu">
-                <li><Link className="dropdown-item" to="/cadastro-instituicao">Cadastrar instituição</Link></li>
-                {isInstituicao && (
-                  <li><Link className="dropdown-item" to="/criar-evento">Criar evento</Link></li>
-                )}
-              </ul>
-            </li>
+            {(!authenticated || isInstituicao) && (
+              <li className="nav-item dropdown">
+                <button
+                  className="nav-link dropdown-toggle nav-link-cheer"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Instituições
+                </button>
+                <ul className="dropdown-menu">
+                  {!authenticated && (
+                    <li><Link className="dropdown-item" to="/cadastro-instituicao">Cadastrar instituição</Link></li>
+                  )}
+                  {isInstituicao && (
+                    <li><Link className="dropdown-item" to="/criar-evento">Criar evento</Link></li>
+                  )}
+                </ul>
+              </li>
+            )}
 
             <li className="nav-item">
               <HashLink smooth to="/#sobre-nos" className="nav-link nav-link-cheer">

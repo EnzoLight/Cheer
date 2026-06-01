@@ -19,6 +19,7 @@ import {
   HomeProfileCard,
   HomeSectionHeading,
 } from "../../Componentes/Home/HomeBlocks";
+import useAuth from "../../Contextos/useAuth";
 
 const principles = [
   {
@@ -72,6 +73,8 @@ const profiles = [
 ];
 
 function App() {
+  const { authenticated } = useAuth();
+
   return (
     <>
       <section className="home-page">
@@ -89,7 +92,7 @@ function App() {
                 sua jornada de impacto em um só lugar.
               </p>
               <div className="d-flex flex-wrap gap-2">
-                <HomeActionLink to="/registro">Criar conta</HomeActionLink>
+                {!authenticated && <HomeActionLink to="/registro">Criar conta</HomeActionLink>}
                 <HomeActionLink to="/eventos" Icon={MapPinned} variant="secondary">
                   Buscar eventos
                 </HomeActionLink>
@@ -169,19 +172,23 @@ function App() {
             <section className="card border-0 p-4 p-lg-5 mt-5 home-cta">
               <HomeSectionHeading
                 kicker="COMECE AGORA"
-                title="Participe de uma rede que transforma"
-                description="Cadastre-se como voluntário ou registre sua instituição para começar a gerar impacto."
+                title={authenticated ? "Continue explorando ações de impacto" : "Participe de uma rede que transforma"}
+                description={authenticated ? "Acesse eventos disponíveis e acompanhe as atividades da sua conta." : "Cadastre-se como voluntário ou registre sua instituição para começar a gerar impacto."}
               />
               <div className="d-flex flex-wrap gap-2 justify-content-center">
                 <HomeActionLink to="/eventos" Icon={MapPinned}>
                   Ver eventos
                 </HomeActionLink>
-                <HomeActionLink to="/registro" variant="secondary">
-                  Ser voluntário
-                </HomeActionLink>
-                <HomeActionLink to="/cadastro-instituicao" Icon={Building2} variant="secondary">
-                  Cadastrar sua instituição
-                </HomeActionLink>
+                {!authenticated && (
+                  <>
+                    <HomeActionLink to="/registro" variant="secondary">
+                      Ser voluntário
+                    </HomeActionLink>
+                    <HomeActionLink to="/cadastro-instituicao" Icon={Building2} variant="secondary">
+                      Cadastrar sua instituição
+                    </HomeActionLink>
+                  </>
+                )}
               </div>
             </section>
           </ScrollAnimate>

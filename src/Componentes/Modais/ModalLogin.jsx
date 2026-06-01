@@ -5,7 +5,11 @@ import Logo from "../Logo/Logo";
 import "./ModalLogin.css";
 
 function ModalLogin() {
-  const { login } = useAuth();
+  const { authenticated, login } = useAuth();
+
+  if (authenticated) {
+    return null;
+  }
 
   return (
     <div
