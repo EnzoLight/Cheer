@@ -3,18 +3,34 @@
    ============================================= */
 :root {
   /* Cores */
-  --color-primary: #FF8C00;
+  --color-primary: #0840CD;
+  --color-primary-hover: #0634A8;
+  --color-accent: #FD6F08;
+  --color-accent-hover: #D95A00;
+  --color-primary-soft: #E9F0FF;
+  --color-accent-soft: #FFF1E7;
+  --color-brand-border: #D8E3FC;
   --color-secondary: #4cc741;
-  --color-blue: #b2d7e4;
-  --color-primary-text: black;
-  --color-background-nav: #fffcf7;
-  --color-border-nav: lightgray;
-  --color-background-hero-start: #b2d7e4;
+  --color-blue: #0840CD;
+  --color-primary-text: #FFFFFF;
+  --color-background-nav: #FFFFFF;
+  --color-border-nav: #DCE5F5;
+  --color-background-hero-start: #E9F0FF;
   --color-background-hero-end: #FFFFFF;
   --color-text: #333;
   --color-text-valid: green;
   --color-text-invalid: red;
   --color-validation-box: lightgray;
+  --background-auth-page:
+    radial-gradient(circle at 8% 10%, rgba(8, 64, 205, 0.16), transparent 30%),
+    radial-gradient(circle at 94% 16%, rgba(253, 111, 8, 0.12), transparent 25%),
+    linear-gradient(135deg, #E9F0FF 0%, #F7FAFF 47%, #FFF8F2 100%);
+  --color-surface: #FFFFFF;
+  --color-panel-text: #202e36;
+  --color-muted-text: #68777d;
+  --color-placeholder: #98A7AF;
+  --card-radius: 26px;
+  --card-shadow: 0 20px 56px rgba(31, 61, 75, 0.13);
 
   /* Fontes */
   --font-brand: 'Mogra', cursive;
@@ -47,7 +63,7 @@ button {
 }
 
 .titulo {
-  color: #FF8C00;
+  color: var(--color-accent);
   font-weight: bold;
   padding-top: 20px;
   font-size: calc(20px + 0.5vw);
@@ -67,17 +83,27 @@ button {
    border-radius: 5%;
 }
 
-span {
-  background-color: #fffcf7;
-  color: #000;
-  padding: 10px 15px;
-  font-size: 18px;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s ease, color 0.3s ease;
-  font-size: 20px;
-  pointer-events: none;
+.cheer-btn-primary {
+  --bs-btn-color: var(--color-primary-text);
+  --bs-btn-bg: var(--color-primary);
+  --bs-btn-border-color: var(--color-primary);
+  --bs-btn-hover-color: var(--color-primary-text);
+  --bs-btn-hover-bg: var(--color-primary-hover);
+  --bs-btn-hover-border-color: var(--color-primary-hover);
+  --bs-btn-active-color: var(--color-primary-text);
+  --bs-btn-active-bg: var(--color-primary-hover);
+  --bs-btn-active-border-color: var(--color-primary-hover);
+}
+
+.cheer-btn-secondary {
+  --bs-btn-color: var(--color-primary);
+  --bs-btn-border-color: var(--color-brand-border);
+  --bs-btn-hover-color: var(--color-primary);
+  --bs-btn-hover-bg: var(--color-primary-soft);
+  --bs-btn-hover-border-color: var(--color-primary);
+  --bs-btn-active-color: var(--color-primary);
+  --bs-btn-active-bg: var(--color-primary-soft);
+  --bs-btn-active-border-color: var(--color-primary);
 }
 
 .loader {

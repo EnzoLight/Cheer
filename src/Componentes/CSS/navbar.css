@@ -3,101 +3,46 @@
   border-bottom: 1px solid var(--color-border-nav);
 }
 
-.navbar-brand-cheer {
-  color: var(--color-primary);
-  font-size: 2.25rem;
-  font-family: var(--font-brand);
-  margin-right: 40px;
-  text-decoration: none;
+.navbar-cheer .navbar-toggler {
+  border-color: var(--color-brand-border);
 }
 
 .nav-link-cheer {
-  font-family: var(--font-nav);
+  color: var(--color-panel-text);
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
 }
 
-.hero-section {
-  background: linear-gradient(to bottom, var(--color-background-hero-start), var(--color-background-hero-end));
-  min-height: 91.2vh;
-  display: flex;
-  align-items: center;
+.nav-link-cheer:hover,
+.nav-link-cheer:focus,
+.navbar-cheer .nav-link.show {
+  color: var(--color-primary);
 }
 
-.btn-primary-cheer {
-  width: 200px;
-  height: 50px;
-  margin-top: 10px;
-  background-color: var(--color-primary);
-  color: var(--color-primary-text);
-  font-size: 1.25rem;
-  font-family: 'Arial Black', sans-serif;
-  border: none;
+.navbar-cheer .dropdown-menu {
+  border-color: var(--color-brand-border);
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(31, 61, 75, 0.1);
 }
 
-.modal-btn-login {
-  border: none;
-  background-color: var(--color-background-hero-start);
-  color: var(--color-text);
-  width: fit-content;
-  margin-top: 10px;
+.navbar-cheer .dropdown-item {
+  color: #45555d;
+  font-family: Poppins, sans-serif;
+  font-size: 0.86rem;
 }
 
-.modal-btn-registro {
-  border: none;
-  background-color: var(--color-primary);
-  color: var(--color-primary-text);
-  width: fit-content;
-  margin-bottom: 15px;
+.navbar-cheer .dropdown-item:hover,
+.navbar-cheer .dropdown-item:focus {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
 }
 
-.form-registro {
-  background-color: var(--color-primary);
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+@media (max-width: 991.98px) {
+  .navbar-cheer .navbar-collapse {
+    padding-top: 16px;
+  }
 
-.form-registro label {
-  text-align: center;
-  width: 80%;
-  font-family: var(--font-body);
-  font-weight: bold;
-}
-
-.form-registro input {
-  width: 300px;
-  height: 30px;
-  margin-bottom: 10px;
-}
-
-.titulo-registro {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-  text-align: center;
-  font-size: 1.5rem;
-  font-family: var(--font-brand);
-}
-
-.validation-box {
-  margin-top: 20px;
-  width: 400px;
-  background-color: var(--color-validation-box);
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.validation-valid {
-  color: var(--color-text-valid);
-  font-family: var(--font-body);
-}
-
-.validation-invalid {
-  color: var(--color-text-invalid);
-  font-family: var(--font-body);
+  .navbar-search-field {
+    flex: 1;
+  }
 }

@@ -1,17 +1,115 @@
-html {
-  scroll-behavior: smooth;
+.home-page,
+.home-main {
+  min-height: calc(100vh - 70px);
 }
 
-.h1{
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
+.home-main {
+  background: var(--background-auth-page);
 }
 
-p{
-  font-family: 'Open Sans', sans-serif;
+.home-hero,
+.home-cta {
+  border-radius: var(--card-radius);
+  background: var(--color-surface);
+  box-shadow: var(--card-shadow);
 }
 
-li{
-  font-family: 'Open Sans', sans-serif;
+.home-kicker {
+  color: var(--color-accent);
+  font-family: Poppins, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.home-hero h1 {
+  color: var(--color-panel-text);
+  font-family: Poppins, sans-serif;
+  font-size: clamp(2.05rem, 4.5vw, 3.05rem);
+  font-weight: 700;
+  line-height: 1.16;
+}
+
+.home-hero-description,
+.home-section-description,
+.home-trust p {
+  color: var(--color-muted-text);
+  font-family: Poppins, sans-serif;
+  line-height: 1.7;
+}
+
+.home-hero-panel {
+  border-left: 1px solid var(--color-brand-border);
+  background: var(--color-primary-soft);
+}
+
+.home-highlight {
+  border-color: var(--color-brand-border) !important;
+  color: var(--color-primary);
+}
+
+.home-highlight strong,
+.home-section-heading h2,
+.home-info-card h3,
+.home-profile-card h3,
+.home-trust h2 {
+  color: var(--color-panel-text);
+  font-family: Poppins, sans-serif;
+  font-weight: 700;
+}
+
+.home-highlight p {
+  color: var(--color-muted-text);
+  font-family: Poppins, sans-serif;
+  font-size: 0.76rem;
+}
+
+.home-section {
+  scroll-margin-top: 92px;
+}
+
+.home-section-heading {
+  max-width: 690px;
+}
+
+.home-section-heading h2 {
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+}
+
+.home-info-card,
+.home-profile-card {
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(31, 61, 75, 0.05);
+}
+
+.home-card-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.home-info-card p,
+.home-profile-card li {
+  color: var(--color-muted-text);
+  font-family: Poppins, sans-serif;
+  font-size: 0.84rem;
+  line-height: 1.65;
+}
+
+.home-profile-card li svg {
+  color: #198754;
+}
+
+.home-trust {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+@media (max-width: 991.98px) {
+  .home-hero-panel {
+    border-top: 1px solid var(--color-brand-border);
+    border-left: 0;
+  }
 }

@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom';
 import UserNavbar from '../../Componentes/UserNavbar';
 { /*import './SobreNos.css'; // estilos específicos (opcional, mas pode usar inline) */}
 import ModalLogin from '../../Componentes/Modais/ModalLogin'
+import useAuth from '../../Contextos/useAuth';
 
 // Se preferir manter tudo inline, use os estilos abaixo, mas é mais limpo com CSS module.
 
 function SobreNos() {
+  const { authenticated } = useAuth();
+
   return (
     <>
       <UserNavbar />
@@ -175,11 +178,13 @@ function SobreNos() {
                   <i className="fas fa-map-marked-alt me-2"></i> Ver Mapa de Eventos
                 </button>
               </Link>
-              <Link to="/registro" className="ms-3">
-                <button className="btn btn-outline-dark btn-lg px-5 py-2" style={{ borderRadius: '40px' }}>
-                  <i className="fas fa-heart me-2"></i> Voluntariar-se
-                </button>
-              </Link>
+              {!authenticated && (
+                <Link to="/registro" className="ms-3">
+                  <button className="btn btn-outline-dark btn-lg px-5 py-2" style={{ borderRadius: '40px' }}>
+                    <i className="fas fa-heart me-2"></i> Voluntariar-se
+                  </button>
+                </Link>
+              )}
             </div>
           </div>
         </div>
