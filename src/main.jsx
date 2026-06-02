@@ -16,6 +16,7 @@ import CadastroInstituicao from './Telas/CadastroInstituicao/CadastroInstituicao
 import AuthProvider from './Contextos/AuthProvider'
 import RequireAuth from './Componentes/Auth/RequireAuth'
 import RequireGuest from './Componentes/Auth/RequireGuest'
+import ProtectedRoute from './Componentes/ProtectedRoute'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode> 
@@ -26,9 +27,10 @@ createRoot(document.getElementById('root')).render(
           <Route path="/registro" element={<RequireGuest><Registro /></RequireGuest>} />
           <Route path="/cadastro-instituicao" element={<RequireGuest><CadastroInstituicao /></RequireGuest>} />
           <Route path="/eventos" element={<Evento />} />
-          <Route path="/perfil" element={<RequireAuth><Perfil /></RequireAuth>} />
-          <Route path="/calendario" element={<RequireAuth><Calendario /></RequireAuth>} />
-          <Route path="/criar-evento" element={<RequireAuth requiredAccountType="instituicao"><CriarEvento /></RequireAuth>} />
+          <Route path="/mapa" element={<Evento />} />  {/* linha nova */}
+          <Route path="/perfil" element={<ProtectedRoute><Perfil /></ProtectedRoute>} />
+          <Route path="/calendario" element={<ProtectedRoute><Calendario /></ProtectedRoute>} />
+          <Route path="/criar-evento" element={<ProtectedRoute requiredRole="instituicao"><CriarEvento /></ProtectedRoute>} />
           <Route path="/dashboard" element={<RequireAuth requiredAccountType="instituicao"><DashboardInstituicao /></RequireAuth>} />
           <Route path="/logs" element={<RequireAuth requiredAccountType="instituicao"><LogsOperacionais /></RequireAuth>} />
         </Routes>
