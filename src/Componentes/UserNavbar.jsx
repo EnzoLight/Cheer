@@ -27,6 +27,7 @@ function SessionItem({ authenticated, children, to }) {
 function UserNavbar() {
   const { authenticated, isInstituicao } = useAuth();
   const agendaLabel = isInstituicao ? "Meus eventos" : "Minha agenda";
+  const agendaPath = isInstituicao ? "/dashboard" : "/calendario";
 
   function preventSearchSubmit(event) {
     event.preventDefault();
@@ -64,7 +65,7 @@ function UserNavbar() {
               </button>
               <ul className="dropdown-menu">
                 <li><Link className="dropdown-item" to="/eventos">Buscar eventos</Link></li>
-                <li><SessionItem authenticated={authenticated} to="/calendario">{agendaLabel}</SessionItem></li>
+                <li><SessionItem authenticated={authenticated} to={agendaPath}>{agendaLabel}</SessionItem></li>
               </ul>
             </li>
 
@@ -85,7 +86,9 @@ function UserNavbar() {
                   {isInstituicao && (
                     <>
                       <li><Link className="dropdown-item" to="/dashboard">Dashboard</Link></li>
+                      <li><Link className="dropdown-item" to="/dashboard">Meus eventos</Link></li>
                       <li><Link className="dropdown-item" to="/criar-evento">Criar evento</Link></li>
+                      <li><Link className="dropdown-item" to="/logs">Logs</Link></li>
                     </>
                   )}
                 </ul>

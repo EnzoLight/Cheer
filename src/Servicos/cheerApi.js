@@ -103,6 +103,27 @@ export function createEvento(payload) {
   );
 }
 
+export function getEvento(id) {
+  return requestJson(
+    api.get(`api/eventos/${id}`),
+    "Nao foi possivel carregar o evento.",
+  );
+}
+
+export function updateEvento(id, payload) {
+  return requestJson(
+    api.put(`api/eventos/${id}`, { json: payload }),
+    "Nao foi possivel atualizar o evento.",
+  );
+}
+
+export function deleteEvento(id) {
+  return requestJson(
+    api.delete(`api/eventos/${id}`),
+    "Nao foi possivel excluir o evento.",
+  );
+}
+
 export function listMeusEventos() {
   return requestJson(
     api.get("api/meus-eventos"),
@@ -117,9 +138,38 @@ export function listMinhasInscricoes() {
   );
 }
 
+export function getInscritosEvento(id) {
+  return requestJson(
+    api.get(`api/eventos/${id}/inscritos`),
+    "Nao foi possivel carregar os inscritos do evento.",
+  );
+}
+
+export function updateStatusInscrito(eventoId, voluntarioId, status) {
+  return requestJson(
+    api.patch(`api/eventos/${eventoId}/inscritos/${voluntarioId}/status`, { json: { status } }),
+    "Nao foi possivel atualizar o status da inscricao.",
+  );
+}
+
 export function getDashboardInstituicao() {
   return requestJson(
     api.get("api/dashboard/instituicao"),
     "Nao foi possivel carregar o dashboard da instituicao.",
+  );
+}
+
+export function getLogs(filters = {}) {
+  const searchParams = {};
+
+  Object.entries(filters).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== "") {
+      searchParams[key] = value;
+    }
+  });
+
+  return requestJson(
+    api.get("api/logs", { searchParams }),
+    "Nao foi possivel carregar os logs.",
   );
 }

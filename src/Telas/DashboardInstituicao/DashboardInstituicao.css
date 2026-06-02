@@ -111,6 +111,39 @@
   font-family: Poppins, sans-serif;
 }
 
+.dashboard-table-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.dashboard-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 82px;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.dashboard-status-pendente {
+  color: #854d0e;
+  background: #fef3c7;
+}
+
+.dashboard-status-aprovado {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.dashboard-status-rejeitado {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
 .dashboard-panel .dt-container {
   color: var(--color-panel-text);
   font-family: Poppins, sans-serif;
@@ -129,6 +162,59 @@
   font-weight: 700;
 }
 
+.dashboard-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1080;
+  display: grid;
+  align-items: start;
+  justify-items: center;
+  overflow: auto;
+  padding: 5rem 1rem 2rem;
+  background: rgba(15, 23, 42, 0.48);
+}
+
+.dashboard-modal {
+  width: min(760px, 100%);
+  border: 1px solid var(--color-brand-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  background: #fff;
+  padding: 1.25rem;
+}
+
+.dashboard-modal-wide {
+  width: min(1080px, 100%);
+}
+
+.dashboard-modal-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-modal-header h2 {
+  margin: 0;
+  color: var(--color-panel-text);
+  font-family: Poppins, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.dashboard-edit-form {
+  color: var(--color-panel-text);
+  font-family: Poppins, sans-serif;
+}
+
+.dashboard-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
 @media (max-width: 991.98px) {
   .dashboard-kpis,
   .dashboard-grid {
@@ -140,5 +226,11 @@
   .dashboard-kpis,
   .dashboard-grid {
     grid-template-columns: 1fr;
+  }
+
+  .dashboard-modal-actions,
+  .dashboard-table-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 }

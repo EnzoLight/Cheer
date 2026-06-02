@@ -3,6 +3,7 @@ import {
   Building2,
   CalendarHeart,
   ChevronDown,
+  FileClock,
   LayoutDashboard,
   LogIn,
   LogOut,
@@ -39,7 +40,7 @@ function UserMenu() {
   const { authenticated, isInstituicao, logout, status } = useAuth();
   const protectedOptions = [
     { label: "Meu perfil", Icon: UserRound, to: "/perfil" },
-    { label: isInstituicao ? "Meus eventos" : "Minhas atividades", Icon: CalendarHeart, to: "/calendario" },
+    { label: isInstituicao ? "Meus eventos" : "Minhas atividades", Icon: CalendarHeart, to: isInstituicao ? "/dashboard" : "/calendario" },
   ];
 
   return (
@@ -98,6 +99,7 @@ function UserMenu() {
         {isInstituicao && (
           <>
             <ProtectedOption authenticated={authenticated} label="Dashboard" Icon={LayoutDashboard} to="/dashboard" />
+            <ProtectedOption authenticated={authenticated} label="Logs" Icon={FileClock} to="/logs" />
             <ProtectedOption authenticated={authenticated} label="Criar evento" Icon={Building2} to="/criar-evento" />
           </>
         )}
