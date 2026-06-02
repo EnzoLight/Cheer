@@ -89,9 +89,17 @@ export function registerInstituicao(payload) {
   return registerAccount("api/auth/register-instituicao", payload);
 }
 
-export function listEventos() {
+export function listEventos(filters = {}) {
+  const searchParams = {};
+
+  Object.entries(filters).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== "") {
+      searchParams[key] = value;
+    }
+  });
+
   return requestJson(
-    api.get("api/eventos"),
+    api.get("api/eventos", { searchParams }),
     "Nao foi possivel carregar os eventos.",
   );
 }

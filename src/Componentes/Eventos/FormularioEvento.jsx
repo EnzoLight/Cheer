@@ -73,8 +73,8 @@ function hasCompleteAddress(address) {
 function normalizeAddress(address) {
   return {
     codigo_postal: address.codigo_postal || "",
-    numero: "",
-    complemento: "",
+    numero: address.numero || "",
+    complemento: address.complemento || "",
     rua: address.rua || "",
     bairro: address.bairro || "",
     uf: address.uf || "",
@@ -173,6 +173,8 @@ function FormularioEvento({ onCreated }) {
         data_hora_termino: dataHoraTermino,
         endereco: {
           rua: formData.endereco.rua.trim(),
+          numero: formData.endereco.numero.trim(),
+          complemento: formData.endereco.complemento.trim(),
           bairro: formData.endereco.bairro.trim(),
           cidade: formData.endereco.cidade.trim(),
           uf: formData.endereco.uf.trim().toUpperCase(),

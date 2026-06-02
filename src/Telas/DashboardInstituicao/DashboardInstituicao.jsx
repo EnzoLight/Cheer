@@ -149,6 +149,8 @@ function hasCompleteAddress(address) {
 function normalizeAddress(address) {
   return {
     rua: address?.rua || "",
+    numero: address?.numero || "",
+    complemento: address?.complemento || "",
     bairro: address?.bairro || "",
     cidade: address?.cidade || "",
     uf: address?.uf || "",
