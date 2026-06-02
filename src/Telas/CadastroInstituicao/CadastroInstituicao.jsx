@@ -111,6 +111,8 @@ function CadastroInstituicao() {
         internacional: formData.internacional === "" ? null : formData.internacional === "true",
         endereco: {
           rua: formData.endereco.rua.trim(),
+          numero: formData.endereco.numero.trim(),
+          complemento: formData.endereco.complemento.trim(),
           bairro: formData.endereco.bairro.trim(),
           cidade: formData.endereco.cidade.trim(),
           uf: formData.endereco.uf.trim().toUpperCase(),
@@ -321,7 +323,7 @@ function CadastroInstituicao() {
                   value={formData.endereco}
                   onChange={updateAddress}
                   required
-                  showExtraFields={false}
+                  showExtraFields={true}
                   title="Endereço da instituição"
                   idPrefix="instituicao-endereco"
                   className="col-12 mt-2 pt-3 border-top registro-endereco"

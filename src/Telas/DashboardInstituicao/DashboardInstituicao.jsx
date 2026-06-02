@@ -444,6 +444,8 @@ function DashboardInstituicao() {
         data_hora_termino: dataHoraTermino,
         endereco: {
           rua: form.endereco.rua.trim(),
+          numero: form.endereco.numero.trim(),
+          complemento: form.endereco.complemento.trim(),
           bairro: form.endereco.bairro.trim(),
           cidade: form.endereco.cidade.trim(),
           uf: form.endereco.uf.trim().toUpperCase(),
@@ -739,6 +741,14 @@ function DashboardInstituicao() {
                   <div className="col-md-8">
                     <label className="form-label" htmlFor="edit-rua">Rua</label>
                     <input className="form-control" id="edit-rua" name="rua" required value={editModal.form.endereco.rua} onChange={updateEditAddressField} />
+                  </div>
+                  <div className="col-md-4">
+                    <label className="form-label" htmlFor="edit-numero">Número</label>
+                    <input className="form-control" id="edit-numero" name="numero" value={editModal.form.endereco.numero} onChange={updateEditAddressField} />
+                  </div>
+                  <div className="col-md-6">
+                    <label className="form-label" htmlFor="edit-complemento">Complemento</label>
+                    <input className="form-control" id="edit-complemento" name="complemento" value={editModal.form.endereco.complemento} onChange={updateEditAddressField} />
                   </div>
                   <div className="col-md-4">
                     <label className="form-label" htmlFor="edit-bairro">Bairro</label>

@@ -272,7 +272,7 @@ function FormularioEvento({ onCreated }) {
           onChange={updateAddress}
           title="Endereço do evento"
           required
-          showExtraFields={false}
+          showExtraFields={true}
           className="col-12 mt-2 p-3 border eventos-address"
           idPrefix="evento-endereco"
         />
