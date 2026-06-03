@@ -1,10 +1,15 @@
 import { Navigate } from 'react-router-dom';
+import useAuth from '../Contextos/useAuth';
 
 function ProtectedRoute({ children, requiredRole }) {
-  const user = JSON.parse(localStorage.getItem('cheer_user') || 'null');
+  const { authenticated, status, profile } = useAuth();
 
-  if (!user) return <Navigate to="/" replace />;
-  if (requiredRole && user.tipo !== requiredRole) return <Navigate to="/" replace />;
+  if (status === 'loading') return null;
+
+  if (!authenticated) return <Navigate to="/" replace />;
+
+  const userType = profile?.tipo || null;
+  if (requiredRole && userType !== requiredRole) return <Navigate to="/" replace />;
 
   return children;
 }
