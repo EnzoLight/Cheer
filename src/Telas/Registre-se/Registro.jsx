@@ -6,6 +6,7 @@ import Input from '../../Componentes/Input/Input';
 import { CreditCard, Lock, Mail, Phone, UserRound } from 'lucide-react';
 import { registerVoluntario } from '../../Servicos/cheerApi';
 import BuscarEndereco from '../../Componentes/BuscarEndereco';
+import { formatCpf, formatPhone, hasValidPhoneLength, onlyDigits } from '../../utils/brFormatters';
 
 const emptyAddress = {
   codigo_postal: '',
@@ -44,15 +45,15 @@ function Registro() {
 
   function updateField(event) {
     const { name, value } = event.target;
+    const formattedValue = {
+      cpf: formatCpf,
+      telefone: formatPhone,
+    }[name]?.(value) ?? value;
 
     setFormData((currentData) => ({
       ...currentData,
-      [name]: name === 'uf' ? value.toUpperCase() : value,
+      [name]: formattedValue,
     }));
-  }
-
-  function onlyDigits(value) {
-    return value.replace(/\D/g, '');
   }
 
   function updateAddress(address) {
@@ -78,6 +79,22 @@ function Registro() {
       setFeedback({
         type: 'error',
         message: 'A confirmacao de senha nao corresponde a senha criada.',
+      });
+      return;
+    }
+
+    if (onlyDigits(formData.cpf).length !== 11) {
+      setFeedback({
+        type: 'error',
+        message: 'Informe um CPF valido com 11 numeros.',
+      });
+      return;
+    }
+
+    if (formData.telefone && !hasValidPhoneLength(formData.telefone)) {
+      setFeedback({
+        type: 'error',
+        message: 'Informe um telefone valido com DDD.',
       });
       return;
     }
@@ -207,6 +224,7 @@ function Registro() {
                   placeholder="(00) 00000-0000"
                   autoComplete="tel"
                   inputMode="tel"
+                  maxLength={15}
                   Icon={Phone}
                   value={formData.telefone}
                   onChange={updateField}

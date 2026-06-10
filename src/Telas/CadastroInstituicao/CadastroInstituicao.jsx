@@ -6,6 +6,7 @@ import Input, { Select } from "../../Componentes/Input/Input";
 import BuscarEndereco from "../../Componentes/BuscarEndereco";
 import { Building2, CalendarDays, CreditCard, Lock, Mail, Phone, Tag } from "lucide-react";
 import { registerInstituicao } from "../../Servicos/cheerApi";
+import { formatCnpj, formatPhone, hasValidPhoneLength, onlyDigits } from "../../utils/brFormatters";
 
 const emptyAddress = {
   codigo_postal: "",
@@ -33,10 +34,6 @@ const initialFormData = {
 
 const currentYear = new Date().getFullYear();
 
-function onlyDigits(value) {
-  return value.replace(/\D/g, "");
-}
-
 function CadastroInstituicao() {
   const [formData, setFormData] = useState(initialFormData);
   const [feedback, setFeedback] = useState(null);
@@ -54,10 +51,14 @@ function CadastroInstituicao() {
 
   function updateField(event) {
     const { name, value } = event.target;
+    const formattedValue = {
+      cnpj: formatCnpj,
+      telefone: formatPhone,
+    }[name]?.(value) ?? value;
 
     setFormData((currentData) => ({
       ...currentData,
-      [name]: value,
+      [name]: formattedValue,
     }));
   }
 
@@ -76,6 +77,14 @@ function CadastroInstituicao() {
       setFeedback({
         type: "error",
         message: "Informe um CNPJ válido com 14 números.",
+      });
+      return;
+    }
+
+    if (formData.telefone && !hasValidPhoneLength(formData.telefone)) {
+      setFeedback({
+        type: "error",
+        message: "Informe um telefone válido com DDD.",
       });
       return;
     }
@@ -225,6 +234,7 @@ function CadastroInstituicao() {
                   placeholder="(00) 00000-0000"
                   autoComplete="tel"
                   inputMode="tel"
+                  maxLength={15}
                   Icon={Phone}
                   value={formData.telefone}
                   onChange={updateField}
